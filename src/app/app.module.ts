@@ -14,6 +14,10 @@ import { AdminDashboardComponent } from './admin-components/admin-dashboard/admi
 import { AdminVerifyReviewersComponent } from './admin-components/admin-verify-reviewers/admin-verify-reviewers.component';
 import { ViewStudentsComponent } from './admin-components/view-students/view-students.component';
 import { VerifiedReviewersComponent } from './admin-components/verified-reviewers/verified-reviewers.component';
+import { StudentSignUpComponent } from './student-components/student-sign-up/student-sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ReviewerSignUpComponent } from './reviewer-components/reviewer-sign-up/reviewer-sign-up.component';
+import {MaterialModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -27,12 +31,16 @@ import { VerifiedReviewersComponent } from './admin-components/verified-reviewer
     AdminDashboardComponent,
     AdminVerifyReviewersComponent,
     ViewStudentsComponent,
-    VerifiedReviewersComponent
+    VerifiedReviewersComponent,
+    StudentSignUpComponent,
+    SignInComponent,
+    ReviewerSignUpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
