@@ -20,6 +20,9 @@ import { ReviewerSignUpComponent } from './reviewer-components/reviewer-sign-up/
 import {MaterialModule, MaterialRootModule} from "@angular/material";
 
 import 'hammerjs';
+import { ReviewerSingleStudentComponent } from './reviewer-components/reviewer-single-student/reviewer-single-student.component';
+import { ReviewerSearchStudentsComponent } from './reviewer-components/reviewer-search-students/reviewer-search-students.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 @NgModule({
   declarations: [
@@ -36,13 +39,16 @@ import 'hammerjs';
     VerifiedReviewersComponent,
     StudentSignUpComponent,
     SignInComponent,
-    ReviewerSignUpComponent
+    ReviewerSignUpComponent,
+    ReviewerSingleStudentComponent,
+    ReviewerSearchStudentsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
