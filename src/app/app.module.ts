@@ -23,6 +23,8 @@ import 'hammerjs';
 import { ReviewerSingleStudentComponent } from './reviewer-components/reviewer-single-student/reviewer-single-student.component';
 import { ReviewerSearchStudentsComponent } from './reviewer-components/reviewer-search-students/reviewer-search-students.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { ReviewerReviewFormComponent } from './reviewer-components/reviewer-review-form/reviewer-review-form.component';
+import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer-feedback-history/reviewer-feedback-history.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +43,15 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
     SignInComponent,
     ReviewerSignUpComponent,
     ReviewerSingleStudentComponent,
-    ReviewerSearchStudentsComponent
+    ReviewerSearchStudentsComponent,
+    ReviewerReviewFormComponent,
+    ReviewerFeedbackHistoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule,
-    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

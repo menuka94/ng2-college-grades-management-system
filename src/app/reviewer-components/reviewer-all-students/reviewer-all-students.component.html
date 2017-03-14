@@ -1,6 +1,18 @@
 <div class="container">
   <h4>All Students</h4>
-  <table>
+  <table class="table">
+    <tr>
+      <th>Index Number</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Action</th>
+    </tr>
 
+    <tr *ngFor="let student of students">
+      <td>{{student.indexNo}}</td>
+      <td>{{student.firstName}} {{student.lastName}}</td>
+      <td>{{student.gender}}</td>
+      <td><button class="btn btn-xs btn-primary">See More</button></td>
+    </tr>
   </table>
 </div>

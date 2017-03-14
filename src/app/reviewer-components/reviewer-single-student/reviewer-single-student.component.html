@@ -1,3 +1,42 @@
-<p>
-  reviewer-single-student works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+      <div class="well">
+        Name: {{student.firstName}} {{student.lastName}}
+        <br>
+        Gender: {{student.gender}}
+        <br>
+        IndexNo: {{student.indexNo}}
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <app-reviewer-review-form></app-reviewer-review-form>
+  </div>
+
+  <!--Academic Records-->
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-md-offset-2">
+      <div *ngFor="let academicRecord of academicRecords">
+        <h3>Semester {{academicRecord.semester}}</h3>
+        <h4>SGPA: {{academicRecord.sgpa}}</h4>
+        <table class="table table-bordered">
+          <tr>
+            <th>Module Code</th>
+            <th>Name</th>
+            <th>Credits</th>
+            <th>Grade</th>
+          </tr>
+          <tr *ngFor="let module of academicRecord.modules">
+            <td>{{module.code}}</td>
+            <td>{{module.name}}</td>
+            <td>{{module.credits}}</td>
+            <td>{{module.grade}}</td>
+          </tr>
+        </table>
+        <br>
+      </div> <!--End of loop-->
+    </div>
+  </div>
+</div>
