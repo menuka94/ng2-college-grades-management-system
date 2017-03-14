@@ -8,6 +8,7 @@ import { StudentDashboardComponent } from './student-dashboard/student-dashboard
 import { ReviewerDashboardComponent } from './reviewer-dashboard/reviewer-dashboard.component';
 import { StudentAddSemesterComponent } from './student-add-semester/student-add-semester.component';
 import { StudentAddModuleComponent } from './student-add-module/student-add-module.component';
+import { ReviewerAllStudentsComponent } from './reviewer-all-students/reviewer-all-students.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { StudentAddModuleComponent } from './student-add-module/student-add-modu
     StudentDashboardComponent,
     ReviewerDashboardComponent,
     StudentAddSemesterComponent,
-    StudentAddModuleComponent
+    StudentAddModuleComponent,
+    ReviewerAllStudentsComponent
   ],
   imports: [
     BrowserModule,
