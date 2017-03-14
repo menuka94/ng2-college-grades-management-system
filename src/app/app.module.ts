@@ -17,7 +17,9 @@ import { VerifiedReviewersComponent } from './admin-components/verified-reviewer
 import { StudentSignUpComponent } from './student-components/student-sign-up/student-sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ReviewerSignUpComponent } from './reviewer-components/reviewer-sign-up/reviewer-sign-up.component';
-import {MaterialModule} from "@angular/material";
+import {MaterialModule, MaterialRootModule} from "@angular/material";
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [

@@ -6,14 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
-  email: string;
-  password: string;
+  formSubmitted = false;
+  public email: string;
+  public password: string;
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  onSubmit(){
+    this.formSubmitted = true;
   }
 
 }
