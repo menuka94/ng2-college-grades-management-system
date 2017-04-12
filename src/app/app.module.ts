@@ -27,6 +27,8 @@ import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {CommonModule} from "@angular/common";
 import { NavbarComponent } from './navbar/navbar.component';
+import {AngularFireModule} from "angularfire2";
+import {firebaseConfig} from "../firebase.config";
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpModule,
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
+import {AngularFire} from "angularfire2";
 
 @Component({
   selector: 'app-student-sign-up',
@@ -9,7 +10,7 @@ import {FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
 export class StudentSignUpComponent implements OnInit {
   studentSignUpForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, af: AngularFire) { }
 
   ngOnInit() {
     this.studentSignUpForm = this.formBuilder.group({
