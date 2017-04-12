@@ -29,6 +29,8 @@ import {CommonModule} from "@angular/common";
 import { NavbarComponent } from './navbar/navbar.component';
 import {AngularFireModule} from "angularfire2";
 import {firebaseConfig} from "../firebase.config";
+import {AppRoutingModule} from "./app-routing.module";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import {firebaseConfig} from "../firebase.config";
     ReviewerReviewFormComponent,
     ReviewerFeedbackHistoryComponent,
     PageNotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import {firebaseConfig} from "../firebase.config";
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
