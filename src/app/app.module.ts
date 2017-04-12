@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -22,9 +22,11 @@ import {MaterialModule, MaterialRootModule} from "@angular/material";
 import 'hammerjs';
 import { ReviewerSingleStudentComponent } from './reviewer-components/reviewer-single-student/reviewer-single-student.component';
 import { ReviewerSearchStudentsComponent } from './reviewer-components/reviewer-search-students/reviewer-search-students.component';
-import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { ReviewerReviewFormComponent } from './reviewer-components/reviewer-review-form/reviewer-review-form.component';
 import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer-feedback-history/reviewer-feedback-history.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {CommonModule} from "@angular/common";
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +47,17 @@ import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer
     ReviewerSingleStudentComponent,
     ReviewerSearchStudentsComponent,
     ReviewerReviewFormComponent,
-    ReviewerFeedbackHistoryComponent
+    ReviewerFeedbackHistoryComponent,
+    PageNotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    CommonModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
