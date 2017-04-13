@@ -7,6 +7,7 @@ import {VerifiedReviewersComponent} from "./admin-components/verified-reviewers/
 import {AdminVerifyReviewersComponent} from "./admin-components/admin-verify-reviewers/admin-verify-reviewers.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AdminDashboardComponent} from "./admin-components/admin-dashboard/admin-dashboard.component";
+import {ReviewerSignUpComponent} from "./reviewer-components/reviewer-sign-up/reviewer-sign-up.component";
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path: 'verified-reviewers', component: VerifiedReviewersComponent},
   {path: 'verify-reviewers', component: AdminVerifyReviewersComponent},
   {path: 'admin-dashboard', component: AdminDashboardComponent},
+  {path: 'reviewer-signup', component: ReviewerSignUpComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

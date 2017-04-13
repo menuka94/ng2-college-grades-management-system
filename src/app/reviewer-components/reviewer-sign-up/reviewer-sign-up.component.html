@@ -1,54 +1,99 @@
-<div class="container">
-  <md-card>
-    <md-card-title>Sign Up as Reviewer</md-card-title>
-    <md-card-content>
-      <form>
-        <!--First Name-->
-        <md-input-container>
-          <input type="text" mdInput placeholder="First Name">
-        </md-input-container>
-        <br>
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+    <form [formGroup]="reviewerSignUpForm" (ngSubmit)="saveReviewer()">
+      <!--First Name-->
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" #refFirstName class="form-control" formControlName="firstName" name="firstName">
+        <div [hidden]="refFirstName.classList.contains('ng-untouched') || refFirstName.classList.contains('ng-pristine') || refFirstName.classList.contains('valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['firstName'].hasError('required')">
+            First name cannot be blank
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['firstName'].hasError('minLength')">
+            First Name should have at least 4 characters
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['firstName'].hasError('maxLength')">
+            First Name should be less than 60 characters
+          </div>
+        </div>
+      </div>
 
-        <!--Last Name-->
-        <md-input-container>
-          <input type="text" mdInput placeholder="Last Name">
-        </md-input-container>
-        <br>
+      <!--Last Name-->
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" #refLastName class="form-control" formControlName="lastName" name="lastName">
+        <div [hidden]="refLastName.classList.contains('ng-pristine') || refLastName.classList.contains('ng-valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['lastName'].hasError('required')">
+            Last name cannot be blank
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['lastName'].hasError('minLength')">
+            Last Name should have at least 4 characters
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['lastName'].hasError('maxLength')">
+            Last Name should be less than 60 characters
+          </div>
+        </div>
+      </div>
 
-        <!--Birthday-->
-        <md-input-container>
-          <input type="date" mdInput placeholder="Birthday">
-        </md-input-container>
-        <br>
+      <!--Gender-->
+      <div class="form-group">
+        <label>Gender</label>
+        <select #refGender name="gender" class="form-control" formControlName="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
 
-        <!--Employee Number-->
-        <md-input-container>
-          <input type="text" mdInput placeholder="Employee Number">
-        </md-input-container>
-        <br>
+        <div [hidden]="refGender.classList.contains('ng-pristine') || refGender.classList.contains('ng-valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['gender'].hasError('required')">
+            Gender cannot be blank
+          </div>
+        </div>
+      </div>
 
-        <!--Email-->
-        <md-input-container>
-          <input type="text" mdInput placeholder="Email">
-        </md-input-container>
-        <br>
+      <!--Employee No.-->
+      <div class="form-group">
+        <label>Employee Number</label>
+        <input type="text" class="form-control" formControlName="employeeNo">
+      </div>
 
-        <!--Password-->
-        <md-input-container>
-          <input type="password" mdInput placeholder="Password">
-        </md-input-container>
-        <br>
+      <!--Email-->
+      <div class="form-group">
+        <label>Email</label>
+        <input #refEmail type="email" class="form-control" formControlName="email" name="email">
+        <div [hidden]="refEmail.classList.contains('ng-pristine') || refEmail.classList.contains('ng-valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['email'].hasError('required')">
+            Email cannot be blank
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['email'].hasError('pattern')">
+            Invalid Email
+          </div>
+        </div>
+      </div>
 
-        <!--Confirm Password-->
-        <md-input-container>
-          <input type="password" mdInput placeholder="Confirm Password">
-        </md-input-container>
+      <!--Password-->
+      <div class="form-group">
+        <label>Password</label>
+        <input #refPassword type="password" class="form-control" name="password" formControlName="password">
+        <div [hidden]="refPassword.classList.contains('ng-pristine') || refPassword.classList.contains('ng-valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('required')">
+            Password cannot be blank
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('minLength')">
+            Password should contain at least 4 characters
+          </div>
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('maxLength')">
+            Password should be less than 15 characters
+          </div>
+        </div>
+      </div>
 
+      <!--Confirm Password-->
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword">
+      </div>
 
-        <br>
-        <button type="submit" color="primary" md-raised-button>Sign Up</button>
-        <button type="button" color="warn" md-raised-button>Clear Fields</button>
-      </form>
-    </md-card-content>
-  </md-card>
+      <button [disabled]="reviewerSignUpForm.invalid" class="btn btn-primary" type="submit">Sign Up</button>
+    </form>
+  </div>
 </div>
