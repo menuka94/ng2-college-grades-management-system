@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/security/auth.service";
 import {Router} from "@angular/router";
+import {AngularFire, AuthMethods, AuthProviders} from "angularfire2";
 
 @Component({
   selector: 'app-sign-in',
@@ -10,12 +11,12 @@ import {Router} from "@angular/router";
 })
 
 export class SignInComponent implements OnInit {
-  formSubmitted = false;
   loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private af: AngularFire) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -27,10 +28,8 @@ export class SignInComponent implements OnInit {
   login(){
     console.log(this.loginForm.value);
     const formValue = this.loginForm.value;
-    this.authService.login(formValue.email, formValue.password)
-      .subscribe(
-        () => this.router.navigate(['reviewer-dashboard']),
-        alert
-      );
+    this.af.auth.login({email: formValue.email, password: formValue.password},
+      {provider: AuthProviders.Password, method: AuthMethods.Password});
+
   }
 }

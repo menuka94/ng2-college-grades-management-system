@@ -27,13 +27,20 @@ import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {CommonModule} from "@angular/common";
 import { NavbarComponent } from './navbar/navbar.component';
-import {AngularFireModule} from "angularfire2";
+import {AngularFireModule, AuthMethods, AuthProviders, FIREBASE_PROVIDERS, FirebaseAuthConfig} from "angularfire2";
 import {firebaseConfig} from "../firebase.config";
 import {AppRoutingModule} from "./app-routing.module";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {AuthService} from "./shared/security/auth.service";
 import {Router} from "@angular/router";
 import {AuthGuard} from "./shared/security/auth.guard";
+import * as firebase from "firebase/app";
+import AuthProvider = firebase.auth.AuthProvider;
+
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+};
 
 @NgModule({
   declarations: [
@@ -67,7 +74,7 @@ import {AuthGuard} from "./shared/security/auth.guard";
     MaterialModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

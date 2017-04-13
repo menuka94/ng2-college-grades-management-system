@@ -19,7 +19,19 @@ export class NavbarComponent implements OnInit {
       if(user){
         // user logged in
         this.email = user.auth.email;
+      }else{
+        this.email = '';
       }
     });
+  }
+
+  logout(){
+    console.log("Logout");
+    this.authService.logout();
+  }
+
+
+  isEmailEmpty(): boolean{
+    return this.email === '';
   }
 }

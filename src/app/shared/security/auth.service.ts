@@ -8,20 +8,20 @@ import {Router} from "@angular/router";
 export class AuthService{
   static UNKNOWN_USER = new AuthInfo(null);
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
-  private currentUser;
+  private currentUser: FirebaseAuthState;
 
   constructor(private auth: AngularFireAuth, private router: Router, private af: AngularFire){
 
   }
 
-  getCurrentUser(){
+  getCurrentUser(): FirebaseAuthState{
     this.af.auth.subscribe(user => {
       if(user){
         // user logged in
         this.currentUser = user;
       }else{
         // user not logged in
-        this.currentUser = {};
+        this.currentUser = null;
       }
     });
 
