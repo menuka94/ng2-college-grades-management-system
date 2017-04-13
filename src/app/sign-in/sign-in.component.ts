@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../shared/security/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -8,17 +11,26 @@ import { Component, OnInit } from '@angular/core';
 
 export class SignInComponent implements OnInit {
   formSubmitted = false;
-  public email: string;
-  public password: string;
+  loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
-
+    this.loginForm = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/)]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(15)]]
+    });
   }
 
-  onSubmit(){
-    this.formSubmitted = true;
+  login(){
+    console.log(this.loginForm.value);
+    const formValue = this.loginForm.value;
+    this.authService.login(formValue.email, formValue.password)
+      .subscribe(
+        () => this.router.navigate(['reviewer-dashboard']),
+        alert
+      );
   }
-
 }

@@ -9,6 +9,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AdminDashboardComponent} from "./admin-components/admin-dashboard/admin-dashboard.component";
 import {ReviewerSignUpComponent} from "./reviewer-components/reviewer-sign-up/reviewer-sign-up.component";
 import {ReviewerDashboardComponent} from "./reviewer-components/reviewer-dashboard/reviewer-dashboard.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {path: 'admin-dashboard', component: AdminDashboardComponent},
   {path: 'reviewer-signup', component: ReviewerSignUpComponent},
   {path: 'reviewer-dashboard', component: ReviewerDashboardComponent},
+  {path: 'login', component: SignInComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
