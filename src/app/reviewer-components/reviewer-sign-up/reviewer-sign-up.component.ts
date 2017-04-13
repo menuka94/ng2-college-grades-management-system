@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../shared/security/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reviewer-sign-up',
@@ -9,7 +11,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class ReviewerSignUpComponent implements OnInit {
   reviewerSignUpForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {
+
+  }
 
   ngOnInit() {
     this.reviewerSignUpForm = this.formBuilder.group({
@@ -25,6 +31,25 @@ export class ReviewerSignUpComponent implements OnInit {
 
   saveReviewer(){
     console.log(this.reviewerSignUpForm.value);
+
+    const val = this.reviewerSignUpForm.value;
+    this.authService.signUp(val.email, val.password)
+      .subscribe(
+        () => {
+          alert('Reviewer Sign Up Successful');
+          console.log('Reviewer Sign Up Successful');
+          this.router.navigateByUrl('/reviewer-dashboard');
+        },
+        err => {
+          alert(err);
+          console.log('Error in registering Reviewer', err.toString());
+        }
+      )
+  }
+
+  isPasswordMatch(){
+    const val = this.reviewerSignUpForm.value;
+    return val && val.password == val.confirmPassword;
   }
 
 }
