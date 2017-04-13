@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   templateUrl: 'reviewer-sign-up.component.html',
   styleUrls: ['reviewer-sign-up.component.css']
 })
+
 export class ReviewerSignUpComponent implements OnInit {
   reviewerSignUpForm: FormGroup;
 
