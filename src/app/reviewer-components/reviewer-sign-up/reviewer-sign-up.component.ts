@@ -33,18 +33,23 @@ export class ReviewerSignUpComponent implements OnInit {
     console.log(this.reviewerSignUpForm.value);
 
     const val = this.reviewerSignUpForm.value;
+    console.log('Test 1');
     this.authService.signUp(val.email, val.password)
       .subscribe(
         () => {
+          console.log('Test 2');
           alert('Reviewer Sign Up Successful');
           console.log('Reviewer Sign Up Successful');
           this.router.navigateByUrl('/reviewer-dashboard');
         },
         err => {
           alert(err);
+          console.log('Test 3');
           console.log('Error in registering Reviewer', err.toString());
         }
       )
+
+    console.log('End of saveReviewer()');
   }
 
   isPasswordMatch(){

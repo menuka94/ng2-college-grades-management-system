@@ -1,4 +1,6 @@
 export class Hero{
-  public id: number|string;
-  public name: string;
+
+  constructor(public $id: string, public name: string){
+
+  }
 }

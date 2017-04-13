@@ -31,6 +31,9 @@ import {AngularFireModule} from "angularfire2";
 import {firebaseConfig} from "../firebase.config";
 import {AppRoutingModule} from "./app-routing.module";
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import {AuthService} from "./shared/security/auth.service";
+import {Router} from "@angular/router";
+import {AuthGuard} from "./shared/security/auth.guard";
 
 @NgModule({
   declarations: [
@@ -66,7 +69,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

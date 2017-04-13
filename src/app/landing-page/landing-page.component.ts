@@ -19,9 +19,9 @@ export class LandingPageComponent implements OnInit {
     this.heroes.subscribe(snapshot => {
       console.log(snapshot.key);
       console.log(snapshot.val());
-      this.hero.id  = snapshot.key;
-      this.hero.name = snapshot.val();
-      this.heroesArray.push(this.hero);
+      // this.hero.$id  = snapshot.key;
+      // this.hero.name = snapshot.val();
+      // this.heroesArray.push(this.hero);
     });
   }
 
