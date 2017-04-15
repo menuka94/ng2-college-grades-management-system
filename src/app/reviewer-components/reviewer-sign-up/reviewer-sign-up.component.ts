@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/security/auth.service";
 import {Router} from "@angular/router";
+import {Reviewer} from "../../models/Reviewer";
+import {AngularFire, AngularFireDatabase, FirebaseObjectObservable} from "angularfire2";
+import * as firebase from "firebase/app";
+import Database = firebase.database.Database;
 
 @Component({
   selector: 'app-reviewer-sign-up',
@@ -14,7 +18,8 @@ export class ReviewerSignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private af: AngularFire) {
 
   }
 
@@ -30,6 +35,17 @@ export class ReviewerSignUpComponent implements OnInit {
     });
   }
 
+  addNewReviewer(){
+    let firstName = this.reviewerSignUpForm.value.firstName;
+    let lastName = this.reviewerSignUpForm.value.lastName;
+    let gender = this.reviewerSignUpForm.value.gender;
+    let employeeNo = this.reviewerSignUpForm.value.employeeNo;
+    let email = this.reviewerSignUpForm.value.email;
+    let reviewer: Reviewer = new Reviewer(firstName, lastName, gender, employeeNo, email, false);
+    // const dbRef  = this.af.database.object('reviewers');
+    // dbRef.push(Reviewer.fromJson(reviewer));
+  }
+
   saveReviewer(){
     console.log(this.reviewerSignUpForm.value);
 
@@ -38,17 +54,17 @@ export class ReviewerSignUpComponent implements OnInit {
     this.authService.signUp(val.email, val.password)
       .subscribe(
         () => {
-          console.log('Test 2');
           alert('Reviewer Sign Up Successful');
           console.log('Reviewer Sign Up Successful');
           this.router.navigateByUrl('/reviewer-dashboard');
+
         },
         err => {
           alert(err);
           console.log('Test 3');
-          console.log('Error in registering Reviewer', err.toString());
+          console.log('Error in creating Reviewer', err.toString());
         }
-      )
+      );
 
     console.log('End of saveReviewer()');
   }

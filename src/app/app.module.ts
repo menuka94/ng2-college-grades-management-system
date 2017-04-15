@@ -37,7 +37,6 @@ import {AuthGuard} from "./shared/security/auth.guard";
 import * as firebase from "firebase/app";
 import AuthProvider = firebase.auth.AuthProvider;
 
-
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Password,
 };
