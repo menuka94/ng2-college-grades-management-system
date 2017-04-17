@@ -28,11 +28,12 @@ export class SignInComponent implements OnInit {
   login(){
     console.log(this.loginForm.value);
     const formValue = this.loginForm.value;
-    this.af.auth.login({email: formValue.email, password: formValue.password},
-      {provider: AuthProviders.Password, method: AuthMethods.Password})
-      .then(() => {
-        this.router.navigateByUrl('reviewer-dashboard');
-      });
+
+    this.authService.login(formValue.email, formValue.password)
+      .subscribe(
+        () => this.router.navigate(['reviewer-dashboard']),
+        alert
+      );
 
   }
 }

@@ -10,18 +10,54 @@ import {AdminDashboardComponent} from "./admin-components/admin-dashboard/admin-
 import {ReviewerSignUpComponent} from "./reviewer-components/reviewer-sign-up/reviewer-sign-up.component";
 import {ReviewerDashboardComponent} from "./reviewer-components/reviewer-dashboard/reviewer-dashboard.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {GeneralSignUpComponent} from "./general-sign-up/general-sign-up.component";
+import {AuthGuard} from "./shared/security/auth.guard";
 
 
 export const routes: Routes = [
-  {path: '', component: LandingPageComponent},
-  {path: 'student-sign-up', component: StudentSignUpComponent},
-  {path: 'verified-reviewers', component: VerifiedReviewersComponent},
-  {path: 'verify-reviewers', component: AdminVerifyReviewersComponent},
-  {path: 'admin-dashboard', component: AdminDashboardComponent},
-  {path: 'reviewer-signup', component: ReviewerSignUpComponent},
-  {path: 'reviewer-dashboard', component: ReviewerDashboardComponent},
-  {path: 'login', component: SignInComponent},
-  {path: '**', component: PageNotFoundComponent}
+  {
+    path: '',
+    component: LandingPageComponent
+  },
+  {
+    path: 'register',
+    component: GeneralSignUpComponent
+  },
+  {
+    path: 'student-sign-up',
+    component: StudentSignUpComponent,
+  },
+  {
+    path: 'verified-reviewers',
+    component: VerifiedReviewersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'verify-reviewers',
+    component: AdminVerifyReviewersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent
+  },
+  {
+    path: 'reviewer-sign-up',
+    component: ReviewerSignUpComponent
+  },
+  {
+    path: 'reviewer-dashboard',
+    component: ReviewerDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: SignInComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

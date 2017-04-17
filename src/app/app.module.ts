@@ -28,18 +28,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {CommonModule} from "@angular/common";
 import { NavbarComponent } from './navbar/navbar.component';
 import {AngularFireModule, AuthMethods, AuthProviders, FIREBASE_PROVIDERS, FirebaseAuthConfig} from "angularfire2";
-import {firebaseConfig} from "../firebase.config";
+import {authConfig, firebaseConfig} from "../firebase.config";
 import {AppRoutingModule} from "./app-routing.module";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {AuthService} from "./shared/security/auth.service";
 import {Router} from "@angular/router";
 import {AuthGuard} from "./shared/security/auth.guard";
 import * as firebase from "firebase/app";
+import { GeneralSignUpComponent } from './general-sign-up/general-sign-up.component';
 import AuthProvider = firebase.auth.AuthProvider;
-
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Password,
-};
 
 @NgModule({
   declarations: [
@@ -63,7 +60,8 @@ const myFirebaseAuthConfig = {
     ReviewerFeedbackHistoryComponent,
     PageNotFoundComponent,
     NavbarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    GeneralSignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +71,7 @@ const myFirebaseAuthConfig = {
     MaterialModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, authConfig)
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

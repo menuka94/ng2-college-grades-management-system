@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../shared/security/auth.service";
 import {AngularFire} from "angularfire2";
+import {AuthInfo} from "../shared/security/auth-info";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +12,16 @@ import {AngularFire} from "angularfire2";
 export class NavbarComponent implements OnInit {
   public currentUser;
   public email;
+  authInfo: AuthInfo;
 
-  constructor(public authService: AuthService, public af: AngularFire) { }
+  constructor(private authService: AuthService,
+              private af: AngularFire,
+              private router: Router) { }
 
   ngOnInit() {
+    this.authService.authInfo$
+      .subscribe(authInfo => this.authInfo = authInfo);
+
     this.currentUser = this.authService.getCurrentUser();
     this.email = this.af.auth.subscribe(user => {
       if(user){
@@ -26,8 +34,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    console.log("Logout");
+    console.log("Navbar Logout");
     this.authService.logout();
+    this.router.navigate(['']);
   }
 
 

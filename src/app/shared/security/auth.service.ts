@@ -7,7 +7,9 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AuthService{
   static UNKNOWN_USER = new AuthInfo(null);
+
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
+
   private currentUser: FirebaseAuthState;
 
   constructor(private auth: AngularFireAuth, private router: Router, private af: AngularFire){
@@ -52,7 +54,7 @@ export class AuthService{
         subject.complete();
       });
 
-    return subject.asObservable();
+    return subject;
   }
 
   logout(){
