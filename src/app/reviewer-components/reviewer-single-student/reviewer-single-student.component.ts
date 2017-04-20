@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Student} from "../../models/Student";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SemestersService} from "../../services/semesters.service";
+import {Semester} from "../../models/Semester";
+import {Observable} from "rxjs/Observable";
+import {StudentsService} from "../../services/students.service";
 
 @Component({
   selector: 'app-reviewer-single-student',
@@ -6,37 +12,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['reviewer-single-student.component.css']
 })
 export class ReviewerSingleStudentComponent implements OnInit {
-  student = {firstName: "Harry", lastName: "Potter", indexNo: "140001A", gender: "Male"};
-  academicRecords = [
-    {
-      semester: "1",
-      sgpa: "3.95",
-      modules: [
-        {code: "CS1032", name: "Programming Fundamentals",credits: "3", grade: "A-"},
-        {code: "MT1022", name: "Properties of Materials", credits: "2", grade: "A-"},
-        {code: "CE1022", name: "Fluid Mechanics", credits: "2", grade: "A+"},
-        {code: "ME1013", name: "Mechanics", credits: "2", grade: "A+"},
-        {code: "EE1012", name: "Electrical Engineering", credits: "2", grade: "A-"},
-        {code: "MA1013", name: "Mathematics", credits: "2", grade: "A"},
-      ]
-    },
-    {
-      semester: "2",
-      sgpa: "3.2",
-      modules: [
-        {code: "CS2022", name: "Data Structures and Algorithms", credits: "2.5", grade: "A-"},
-        {code: "CS1033", name: "Object Oriented Programming", credits: "3", grade: "B"},
-        {code: "CE1035", name: "Computer Architecture", credits: "2", grade: "A-"},
-        {code: "EE1013", name: "Theory of Electricity", credits: "2", grade: "C+"},
-        {code: "ME1012", name: "Introduction to Manufacturing Engineering", credits: "2", grade: "C"},
-        {code: "MA2013", name: "Numerical Methods for Computer Science", credits: "3", grade: "B"},
-      ]
-    }
-  ];
+  @Input('student')
+  student$: Observable<Student>;
+  student: Student;
 
-  constructor() { }
+  semesters: Semester[];
+  semesters$: Observable<Semester[]>;
+
+  constructor(private route: ActivatedRoute,
+              private semestersService: SemestersService,
+              private studentsService: StudentsService,
+              private router: Router) {
+  }
 
   ngOnInit() {
+    let studentId = this.route.snapshot.params['studentId'];
+    this.student$ = this.studentsService.getStudentByUserId(studentId);
+    this.student$.subscribe(result => {
+        console.log('subscribe(): ', result);
+        this.student = Student.fromJson(result);
+      }
+    );
+
+    console.log('studentId: ', studentId);
+
+    this.semesters$ = this.semestersService.getSemestersOfStudent(studentId);
+
+    this.semesters$.subscribe();
+
   }
 
 }

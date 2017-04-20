@@ -10,7 +10,6 @@ import {Observable} from "rxjs/Observable";
 })
 export class ReviewerAllStudentsComponent implements OnInit {
   students$: Observable<Student[]>;
-  students: Student[];
 
   @Output('student')
   studentEmitter = new EventEmitter<Student>();
@@ -20,11 +19,11 @@ export class ReviewerAllStudentsComponent implements OnInit {
   ngOnInit() {
     this.students$ = this.studentsService.getAllStudents();
     this.students$.subscribe();
-    console.log(this.students$);
   }
 
   selectStudent(student: Student){
     this.studentEmitter.emit(student);
   }
+
 
 }

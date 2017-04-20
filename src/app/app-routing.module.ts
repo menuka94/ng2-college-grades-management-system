@@ -13,6 +13,7 @@ import {SignInComponent} from "./sign-in/sign-in.component";
 import {GeneralSignUpComponent} from "./general-sign-up/general-sign-up.component";
 import {AuthGuard} from "./shared/security/auth.guard";
 import {ReviewerAllStudentsComponent} from "./reviewer-components/reviewer-all-students/reviewer-all-students.component";
+import {ReviewerSingleStudentComponent} from "./reviewer-components/reviewer-single-student/reviewer-single-student.component";
 
 
 export const routes: Routes = [
@@ -53,8 +54,17 @@ export const routes: Routes = [
   },
   {
     path: 'all-students',
-    component: ReviewerAllStudentsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [],
+    children: [
+      {
+        path: '',
+        component: ReviewerAllStudentsComponent
+      },
+      {
+        path: ':studentId',
+        component: ReviewerSingleStudentComponent
+      }
+    ]
   },
   {
     path: 'login',

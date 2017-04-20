@@ -1,31 +1,30 @@
 import {Inject, Injectable} from '@angular/core';
+import {Subject} from "rxjs/Subject";
 import {AngularFire, FirebaseRef} from "angularfire2";
 import {Observable} from "rxjs/Observable";
-import {Student} from "../models/Student";
-import {Subject} from "rxjs/Subject";
+import {Semester} from "../models/Semester";
 
 @Injectable()
-export class StudentsService {
-  private sdkDb: any;
+export class SemestersService {
+  sdkDb: any;
 
   constructor(private af: AngularFire, @Inject(FirebaseRef) fb) {
     this.sdkDb = fb.database().ref();
   }
 
-  getAllStudents(): Observable<Student[]>{
-    return this.af.database.list('students')
-      .map(Student.fromJsonArray);
+  getAllSemesters(){
+
   }
 
-  getStudentByUserId(userId: string): Observable<Student>{
-    return this.af.database.list('students', {
-      query: {
-        orderByChild: 'userId',
-        equalTo: userId
-      }
-    }).map(results => results[0]);
+  getAllSGPAsOfStudent(studentId: string){
+
   }
 
+  getSemestersOfStudent(studentId: string): Observable<Semester[]>{
+    return this.af.database.list('semesters/' + studentId)
+      .do(results => console.log('semesters(): ', results))
+      .map(Semester.fromJsonArray);
+  }
 
   firebaseUpdate(dataToSave){
     const subject = new Subject();

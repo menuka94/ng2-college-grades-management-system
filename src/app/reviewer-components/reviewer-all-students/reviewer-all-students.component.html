@@ -2,6 +2,7 @@
   <h4>All Students</h4>
   <table class="table">
     <tr>
+      <th>StudentID</th>
       <th>Index Number</th>
       <th>Name</th>
       <th>Gender</th>
@@ -9,10 +10,11 @@
     </tr>
 
     <tr *ngFor="let student of (students$ | async)">
+      <td>{{student?.userId}}</td>
       <td>{{student?.indexNo}}</td>
       <td>{{student?.firstName}} {{student?.lastName}}</td>
       <td>{{student?.gender}}</td>
-      <td><button class="btn btn-xs btn-primary">See More</button></td>
+      <td><button class="btn btn-xs btn-primary" [routerLink]="['./', student?.userId]">See More</button></td>
     </tr>
   </table>
 </div>

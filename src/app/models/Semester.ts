@@ -1,3 +1,4 @@
+import {Module} from "./Module";
 export class Semester {
   constructor(public number: string,
               public enabled: boolean,
