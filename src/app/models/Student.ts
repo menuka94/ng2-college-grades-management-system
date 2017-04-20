@@ -1,5 +1,5 @@
 export class Student {
-  constructor(public uid: number,
+  constructor(public userId: number,
               public firstName: string,
               public lastName: string,
               public gender: string,
@@ -11,8 +11,8 @@ export class Student {
 
   }
 
-  static fromJson({uid, firstName, lastName, gender, birthday, email, indexNo, department}){
-    return new Student(uid, firstName, lastName,gender, birthday, email, indexNo, department);
+  static fromJson({userId, firstName, lastName, gender, birthday, email, indexNo, department}){
+    return new Student(userId, firstName, lastName,gender, birthday, email, indexNo, department);
   }
 
   static fromJsonArray(json: any[]): Student[] {

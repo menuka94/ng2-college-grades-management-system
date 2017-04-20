@@ -8,10 +8,10 @@
       <th>Action</th>
     </tr>
 
-    <tr *ngFor="let student of students">
-      <td>{{student.indexNo}}</td>
-      <td>{{student.firstName}} {{student.lastName}}</td>
-      <td>{{student.gender}}</td>
+    <tr *ngFor="let student of (students$ | async)">
+      <td>{{student?.indexNo}}</td>
+      <td>{{student?.firstName}} {{student?.lastName}}</td>
+      <td>{{student?.gender}}</td>
       <td><button class="btn btn-xs btn-primary">See More</button></td>
     </tr>
   </table>

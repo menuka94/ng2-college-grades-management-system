@@ -12,6 +12,7 @@ import {ReviewerDashboardComponent} from "./reviewer-components/reviewer-dashboa
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {GeneralSignUpComponent} from "./general-sign-up/general-sign-up.component";
 import {AuthGuard} from "./shared/security/auth.guard";
+import {ReviewerAllStudentsComponent} from "./reviewer-components/reviewer-all-students/reviewer-all-students.component";
 
 
 export const routes: Routes = [
@@ -48,6 +49,11 @@ export const routes: Routes = [
   {
     path: 'reviewer-dashboard',
     component: ReviewerDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'all-students',
+    component: ReviewerAllStudentsComponent,
     canActivate: [AuthGuard]
   },
   {

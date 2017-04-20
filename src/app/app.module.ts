@@ -37,6 +37,9 @@ import {AuthGuard} from "./shared/security/auth.guard";
 import * as firebase from "firebase/app";
 import { GeneralSignUpComponent } from './general-sign-up/general-sign-up.component';
 import AuthProvider = firebase.auth.AuthProvider;
+import {StudentsService} from "./services/students.service";
+import {ReviewersService} from "./services/reviewers.service";
+import {AdminService} from "./services/admin.service";
 
 @NgModule({
   declarations: [
@@ -73,7 +76,7 @@ import AuthProvider = firebase.auth.AuthProvider;
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig, authConfig)
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, StudentsService, ReviewersService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

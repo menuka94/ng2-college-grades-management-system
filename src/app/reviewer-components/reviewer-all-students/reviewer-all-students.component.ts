@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Student} from "../../models/Student";
+import {StudentsService} from "../../services/students.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-reviewer-all-students',
@@ -6,17 +9,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['reviewer-all-students.component.css']
 })
 export class ReviewerAllStudentsComponent implements OnInit {
+  students$: Observable<Student[]>;
+  students: Student[];
 
-  students = [
-    {firstName: "Harry", lastName: "Potter", indexNo: "140001A", gender: "Male"},
-    {firstName: "Hermione", lastName: "Granger", indexNo: "140321B", gender: "Female"},
-    {firstName: "Ron", lastName: "Weasley", indexNo: "140512C", gender: "Male"},
-    {firstName: "Draco", lastName: "Malfoy", indexNo: "140535D", gender: "male"}
-  ];
+  @Output('student')
+  studentEmitter = new EventEmitter<Student>();
 
-  constructor() { }
+  constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {
+    this.students$ = this.studentsService.getAllStudents();
+    this.students$.subscribe();
+    console.log(this.students$);
+  }
+
+  selectStudent(student: Student){
+    this.studentEmitter.emit(student);
   }
 
 }
