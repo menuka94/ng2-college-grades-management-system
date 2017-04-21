@@ -11,9 +11,6 @@ import {Observable} from "rxjs/Observable";
 export class ReviewerAllStudentsComponent implements OnInit {
   students$: Observable<Student[]>;
 
-  @Output('student')
-  studentEmitter = new EventEmitter<Student>();
-
   constructor(private studentsService: StudentsService) { }
 
   ngOnInit() {
@@ -21,9 +18,8 @@ export class ReviewerAllStudentsComponent implements OnInit {
     this.students$.subscribe();
   }
 
-  selectStudent(student: Student){
-    this.studentEmitter.emit(student);
+  filter(searchText: string){
+    console.log(searchText);
   }
-
 
 }

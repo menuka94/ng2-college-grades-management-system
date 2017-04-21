@@ -1,10 +1,21 @@
+<button class="btn btn-default" routerLink="../">All Students</button>
 <div class="row">
   <div class="col-md-8 col-lg-8 col-sm-8">
     <h2>Student Academic Record</h2>
-    <h3>Semesters of {{student?.firstName}} {{student?.lastName}}</h3>
     <!--<ul class="list-group" *ngFor="let semester of (semesters$ | async)">-->
       <!--<li class="list-group-item">{{semester?.number}}</li>-->
       <!--<li class="list-group-item">{{semester?.year}}</li>-->
     <!--</ul>-->
+  </div>
+  <div class="col-md-4 col-lg-4 col-sm-4">
+    <div class="well">
+      <ul class="list-group">
+        <li class="list-group-item">Name: {{student?.firstName}} {{student?.lastName}}</li>
+        <li class="list-group-item">Gender: {{student?.gender}}</li>
+        <li class="list-group-item">Birthday: {{student?.birthday}}</li>
+        <li class="list-group-item">IndexNo: {{student?.indexNo}}</li>
+        <li class="list-group-item">Department: {{student?.department}}</li>
+      </ul>
+    </div>
   </div>
 </div>
