@@ -6,6 +6,7 @@ import {Reviewer} from "../../models/Reviewer";
 import {AngularFire, AngularFireDatabase, FirebaseObjectObservable} from "angularfire2";
 import * as firebase from "firebase/app";
 import Database = firebase.database.Database;
+import {ReviewersService} from "../../services/reviewers.service";
 
 @Component({
   selector: 'app-reviewer-sign-up',
@@ -18,6 +19,7 @@ export class ReviewerSignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
+              private reviewersService: ReviewersService,
               private router: Router,
               private af: AngularFire) {
 
@@ -35,33 +37,35 @@ export class ReviewerSignUpComponent implements OnInit {
     });
   }
 
-  addNewReviewer(){
+  addNewReviewer(uid: string){
+    console.log('test 1');
     let firstName = this.reviewerSignUpForm.value.firstName;
     let lastName = this.reviewerSignUpForm.value.lastName;
     let gender = this.reviewerSignUpForm.value.gender;
     let employeeNo = this.reviewerSignUpForm.value.employeeNo;
     let email = this.reviewerSignUpForm.value.email;
-    let reviewer: Reviewer = new Reviewer(firstName, lastName, gender, employeeNo, email, false);
-    // const dbRef  = this.af.database.object('reviewers');
-    // dbRef.push(Reviewer.fromJson(reviewer));
+    let reviewer: Reviewer = new Reviewer(firstName, lastName, gender, employeeNo, email, uid, false);
+
+    this.reviewersService.createNewReviewer(uid, reviewer);
+    console.log('test 2');
   }
 
   saveReviewer(){
+    let uid = "";
     console.log(this.reviewerSignUpForm.value);
 
     const val = this.reviewerSignUpForm.value;
-    console.log('Test 1');
     this.authService.signUp(val.email, val.password)
       .subscribe(
         () => {
           alert('Reviewer Sign Up Successful');
           console.log('Reviewer Sign Up Successful');
           this.router.navigateByUrl('/reviewer-dashboard');
-
+          uid = this.authService.getCurrentUser().uid.toString();
+          this.addNewReviewer(uid);
         },
         err => {
           alert(err);
-          console.log('Test 3');
           console.log('Error in creating Reviewer', err.toString());
         }
       );

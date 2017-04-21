@@ -12,10 +12,6 @@ export class SemestersService {
     this.sdkDb = fb.database().ref();
   }
 
-  getAllSemesters(){
-
-  }
-
   getAllSGPAsOfStudent(studentId: string){
 
   }

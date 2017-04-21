@@ -41,6 +41,8 @@ import {StudentsService} from "./services/students.service";
 import {ReviewersService} from "./services/reviewers.service";
 import {AdminService} from "./services/admin.service";
 import {SemestersService} from "./services/semesters.service";
+import { StudentsListComponent } from './reviewer-components/reviewer-all-students/students-list/students-list.component';
+import {ReviewerVerifiedGuard} from "./shared/security/reviewer-verified.guard";
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import {SemestersService} from "./services/semesters.service";
     PageNotFoundComponent,
     NavbarComponent,
     LandingPageComponent,
-    GeneralSignUpComponent
+    GeneralSignUpComponent,
+    StudentsListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,10 +83,12 @@ import {SemestersService} from "./services/semesters.service";
   providers: [
     AuthService,
     AuthGuard,
+    ReviewerVerifiedGuard,
     StudentsService,
     ReviewersService,
     AdminService,
-    SemestersService],
+    SemestersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
