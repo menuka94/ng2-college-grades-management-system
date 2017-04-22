@@ -3,11 +3,12 @@
     <h4>Reviewers</h4>
     <table class="table">
       <tr>
-        <th>Index Number</th>
+        <th>Employee No.</th>
         <th>Name</th>
         <th>Gender</th>
         <th>Approved</th>
-        <!--<th>Action</th>-->
+        <th>Email</th>
+        <th>Action</th>
       </tr>
 
       <tr *ngFor="let reviewer of filteredReviewers">
@@ -15,9 +16,15 @@
         <td>{{reviewer?.firstName}} {{reviewer?.lastName}}</td>
         <td>{{reviewer?.gender}}</td>
         <td>{{reviewer?.approved}}</td>
-        <!--<td>-->
-          <!--<button class="btn btn-xs btn-primary" [routerLink]="['./', student?.userId]">See More</button>-->
-        <!--</td>-->
+        <td>{{reviewer?.email}}</td>
+        <td>
+          <div *ngIf="reviewer?.approved == false">
+            <button class="btn btn-xs btn-primary">Approve</button>
+          </div>
+          <div *ngIf="reviewer?.approved == true">
+            <button class="btn btn-xs btn-primary">Disprove</button>
+          </div>
+        </td>
       </tr>
     </table>
   </div>

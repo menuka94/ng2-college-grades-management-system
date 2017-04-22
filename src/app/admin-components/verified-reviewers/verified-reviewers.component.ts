@@ -20,9 +20,21 @@ export class VerifiedReviewersComponent implements OnInit {
     this.reviewers$.subscribe(
       reviewers => {
         this.reviewers = reviewers;
-        this.verifiedReviewers = reviewers;
+        this.verifiedReviewers = reviewers.filter(reviewer => reviewer.approved);
       }
     );
   }
 
+  filter(query: string){
+    if(query){
+      query = query.toLowerCase();
+      this.verifiedReviewers = this.reviewers
+        .filter(reviewer => (reviewer.firstName.toLowerCase().match(query) ||
+                            reviewer.lastName.toLowerCase().match(query) ||
+                            reviewer.employeeNo.toLowerCase().match(query) ||
+                            reviewer.gender.toLowerCase().match(query)) && reviewer.approved==true);
+    }else{
+      this.verifiedReviewers = this.reviewers;
+    }
+  }
 }

@@ -39,5 +39,4 @@ export class ReviewerAllStudentsComponent implements OnInit {
     }
     console.log(this.filteredStudents);
   }
-
 }

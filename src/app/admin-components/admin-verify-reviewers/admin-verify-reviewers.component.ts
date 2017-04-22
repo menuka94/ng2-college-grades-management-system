@@ -20,10 +20,19 @@ export class AdminVerifyReviewersComponent implements OnInit {
     this.reviewers$.subscribe(
       reviewers => {
         this.reviewers = reviewers;
-        this.reviewersToBeVerified = reviewers;
+        this.reviewersToBeVerified = reviewers.filter(reviewer => !reviewer.approved);
       }
     );
   }
 
-
+  filter(query: string){
+    if(query){
+      query = query.toLowerCase();
+      this.reviewersToBeVerified = this.reviewers
+        .filter(reviewer => (reviewer.firstName.toLowerCase().match(query) ||
+                             reviewer.lastName.toLowerCase().match(query) ||
+                             reviewer.employeeNo.toLowerCase().match(query) ||
+                             reviewer.gender.toLowerCase().match(query)));
+    }
+  }
 }

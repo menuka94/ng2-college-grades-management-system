@@ -1,2 +1,14 @@
-<h3>Reviewers to be Verified</h3>
+<div class="col-md-6">
+  <h3>Reviewers to be Verified</h3>
+</div>
+<div class="col-md-6 pull-right">
+  <button class="btn btn-default" routerLink="../verified-reviewers">Verified Reviewers</button>
+</div>
+
+<div class="row">
+  <div class="well col-md-4 col-lg-4 col-sm-4 col-md-offset-4 col-lg-offset-4 col-sm-offset-4">
+    <label>Search:</label>
+    <input type="text" class="form-control" (keyup)="filter(searchText.value)" #searchText>
+  </div>
+</div>
 <app-reviewers-list [filteredReviewers]="reviewersToBeVerified"></app-reviewers-list>
