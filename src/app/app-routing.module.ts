@@ -32,12 +32,12 @@ export const routes: Routes = [
   {
     path: 'verified-reviewers',
     component: VerifiedReviewersComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'verify-reviewers',
     component: AdminVerifyReviewersComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'admin-dashboard',

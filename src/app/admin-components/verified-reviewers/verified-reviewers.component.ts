@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Reviewer} from "../../models/Reviewer";
+import {ReviewersService} from "../../services/reviewers.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-verified-reviewers',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['verified-reviewers.component.css']
 })
 export class VerifiedReviewersComponent implements OnInit {
+  reviewers$: Observable<Reviewer[]>;
+  reviewers: Reviewer[];
+  verifiedReviewers: Reviewer[];
 
-  constructor() { }
+  constructor(private reviewersService: ReviewersService) { }
 
   ngOnInit() {
+    this.reviewers$ = this.reviewersService.getAllReviewers();
+    this.reviewers$.subscribe(
+      reviewers => {
+        this.reviewers = reviewers;
+        this.verifiedReviewers = reviewers;
+      }
+    );
   }
 
 }

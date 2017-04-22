@@ -12,6 +12,11 @@ export class ReviewersService {
     this.sdkDb = fb.database().ref();
   }
 
+  getAllReviewers(): Observable<Reviewer[]>{
+    return this.af.database.list('reviewers')
+      .map(Reviewer.fromJsonArray);
+  }
+
   createNewReviewer(userId: string, reviewer: Reviewer): Observable<any>{
     let reviewerToSave = Object.assign({}, reviewer);
     let dataToSave = {};

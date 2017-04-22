@@ -43,6 +43,7 @@ import {AdminService} from "./services/admin.service";
 import {SemestersService} from "./services/semesters.service";
 import { StudentsListComponent } from './reviewer-components/reviewer-all-students/students-list/students-list.component';
 import {ReviewerVerifiedGuard} from "./shared/security/reviewer-verified.guard";
+import { ReviewersListComponent } from './admin-components/reviewers-list/reviewers-list.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {ReviewerVerifiedGuard} from "./shared/security/reviewer-verified.guard";
     NavbarComponent,
     LandingPageComponent,
     GeneralSignUpComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    ReviewersListComponent
   ],
   imports: [
     BrowserModule,
