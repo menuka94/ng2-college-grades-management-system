@@ -20,7 +20,13 @@ export class ReviewersListComponent implements OnInit {
   toggleApproval(reviewer) {
     this.reviewersService.toggleApproval(reviewer.uid, reviewer)
       .subscribe(
-        obj => {},
+        obj => {
+          if(reviewer.approved){
+            alert("Reviewer Disproved!");
+          }else{
+            alert("Reviewer Approved!");
+          }
+        },
         err => {
           alert("Error: "+ err.toString());
         }

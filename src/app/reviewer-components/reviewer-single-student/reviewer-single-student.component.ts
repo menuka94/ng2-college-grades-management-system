@@ -16,7 +16,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
   student$: Observable<Student>;
   student: Student;
 
-  semesters: Semester[];
+  semesters: Semester[] = [];
   semesters$: Observable<Semester[]>;
 
   constructor(private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
     let studentId = this.route.snapshot.params['studentId'];
     this.student$ = this.studentsService.getStudentByUserId(studentId);
     this.student$.subscribe(result => {
-        console.log('subscribe(): ', result);
+        // console.log('subscribe(): ', result);
         this.student = Student.fromJson(result);
       }
     );
@@ -38,8 +38,19 @@ export class ReviewerSingleStudentComponent implements OnInit {
 
     this.semesters$ = this.semestersService.getSemestersOfStudent(studentId);
 
-    this.semesters$.subscribe();
+    this.semesters$.subscribe(
+      data => {
+        data.map(semester => {
+          let s = Semester.fromJson(semester);
+          this.semesters.push(s);
+        });
 
+        console.log("Semesters[]: ", this.semesters);
+      },
+      err => {
+
+      }
+    );
   }
 
 }

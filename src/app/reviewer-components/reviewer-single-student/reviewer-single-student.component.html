@@ -2,10 +2,10 @@
 <div class="row">
   <div class="col-md-8 col-lg-8 col-sm-8">
     <h2>Student Academic Record</h2>
-    <!--<ul class="list-group" *ngFor="let semester of (semesters$ | async)">-->
-      <!--<li class="list-group-item">{{semester?.number}}</li>-->
-      <!--<li class="list-group-item">{{semester?.year}}</li>-->
-    <!--</ul>-->
+    <ul class="list-group" *ngFor="let semester of semesters">
+      <li class="list-group-item">Semester: {{semester?.number}}</li>
+      <li class="list-group-item">Year: {{semester?.year}}</li>
+    </ul>
   </div>
   <div class="col-md-4 col-lg-4 col-sm-4">
     <div class="well">
