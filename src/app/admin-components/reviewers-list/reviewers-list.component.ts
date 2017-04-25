@@ -9,7 +9,6 @@ import {Reviewer} from "../../models/Reviewer";
   styleUrls: ['./reviewers-list.component.css']
 })
 export class ReviewersListComponent implements OnInit {
-
   @Input()
   filteredReviewers: Reviewer[];
 
@@ -17,4 +16,15 @@ export class ReviewersListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  toggleApproval(reviewer) {
+    this.reviewersService.toggleApproval(reviewer.uid, reviewer)
+      .subscribe(
+        obj => {},
+        err => {
+          alert("Error: "+ err.toString());
+        }
+      );
+  }
+
 }

@@ -25,6 +25,17 @@ export class ReviewersService {
     return this.firebaseUpdate(dataToSave);
   }
 
+  toggleApproval(uid: string, reviewer): Observable<any>{
+    const reviewerToSave = Object.assign({}, reviewer);
+    let dataToSave = {};
+
+    console.log('Current approval: ', !reviewer.approved);
+    dataToSave['reviewers/' + uid + '/approved'] = !reviewer.approved;
+
+    return this.firebaseUpdate(dataToSave);
+
+  }
+
   firebaseUpdate(dataToSave){
     const subject = new Subject();
     this.sdkDb.update(dataToSave)

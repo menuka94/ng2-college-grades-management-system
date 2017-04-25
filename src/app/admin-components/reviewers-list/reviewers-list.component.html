@@ -19,10 +19,10 @@
         <td>{{reviewer?.email}}</td>
         <td>
           <div *ngIf="reviewer?.approved == false">
-            <button class="btn btn-xs btn-primary">Approve</button>
+            <button class="btn btn-xs btn-primary" (click)="toggleApproval(reviewer)">Approve</button>
           </div>
           <div *ngIf="reviewer?.approved == true">
-            <button class="btn btn-xs btn-primary">Disprove</button>
+            <button class="btn btn-xs btn-primary" (click)="toggleApproval(reviewer)">Disprove</button>
           </div>
         </td>
       </tr>

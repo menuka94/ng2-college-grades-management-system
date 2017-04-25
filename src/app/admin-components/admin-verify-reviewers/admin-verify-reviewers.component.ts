@@ -35,4 +35,6 @@ export class AdminVerifyReviewersComponent implements OnInit {
                              reviewer.gender.toLowerCase().match(query)));
     }
   }
+
+
 }
