@@ -3,6 +3,7 @@ import {Subject} from "rxjs/Subject";
 import {AngularFire, FirebaseRef} from "angularfire2";
 import {Observable} from "rxjs/Observable";
 import {Semester} from "../models/Semester";
+import {Module} from "../models/Module";
 
 @Injectable()
 export class SemestersService {
@@ -20,6 +21,12 @@ export class SemestersService {
     return this.af.database.list('semesters/' + studentId)
       .do(results => console.log('semesters(): ', results))
       .map(Semester.fromJsonArray);
+  }
+
+  getModulesOfSemester(studentId, string, semesterId: string): Observable<Module[]>{
+    return this.af.database.list('semesters/' + studentId + '/modules')
+      .do(results => console.log('Modules: ', results))
+      .map(Module.fromJsonArray);
   }
 
   firebaseUpdate(dataToSave){

@@ -2,10 +2,22 @@
 <div class="row">
   <div class="col-md-8 col-lg-8 col-sm-8">
     <h2>Student Academic Record</h2>
-    <ul class="list-group" *ngFor="let semester of semesters">
-      <li class="list-group-item">Semester: {{semester?.number}}</li>
-      <li class="list-group-item">Year: {{semester?.year}}</li>
-    </ul>
+    <div class="panel panel-default" *ngFor="let semester of semesters">
+      <div class="panel-heading">Semester: {{semester?.number}}</div>
+      <div class="panel-body">
+        Modules <div class="pull-right">SGPA: {{semester?.sgpa}}</div>
+      </div>
+
+      <table class="table">
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Grade</th>
+        </tr>
+      </table>
+    </div>
+
   </div>
   <div class="col-md-4 col-lg-4 col-sm-4">
     <div class="well">

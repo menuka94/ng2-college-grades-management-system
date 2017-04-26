@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Student} from "../../models/Student";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SemestersService} from "../../services/semesters.service";
@@ -40,6 +40,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
 
     this.semesters$.subscribe(
       data => {
+        this.semesters = [];
         data.map(semester => {
           let s = Semester.fromJson(semester);
           this.semesters.push(s);
