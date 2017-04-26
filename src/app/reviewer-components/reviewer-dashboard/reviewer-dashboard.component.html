@@ -1,3 +1,14 @@
-<p>
-  reviewer-dashboard works!
-</p>
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-6">
+    <div *ngIf="isApproved">
+      <button class="btn btn-primary" routerLink="all-students">All Students</button>
+      <button class="btn btn-primary">My Comments</button>
+    </div>
+
+    <div *ngIf="!isApproved">
+      <h3>You're not approved by the System Admin!</h3>
+    </div>
+
+  </div>
+</div>
+

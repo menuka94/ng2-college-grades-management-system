@@ -2,11 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/security/auth.service";
 import {Router} from "@angular/router";
-import {AngularFire, AuthMethods, AuthProviders} from "angularfire2";
 import {StudentsService} from "../services/students.service";
 import {ReviewersService} from "../services/reviewers.service";
-import {Student} from "../models/Student";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +19,6 @@ export class SignInComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private af: AngularFire,
               private studentsService: StudentsService,
               private reviewersService: ReviewersService) {
   }
@@ -38,7 +34,6 @@ export class SignInComponent implements OnInit {
         data.forEach(student => {
           this.studentIds.push(student.userId);
         });
-        console.log(this.studentIds);
       }
     );
 
@@ -47,7 +42,6 @@ export class SignInComponent implements OnInit {
         data.forEach(reviewer => {
           this.reviewerIds.push(reviewer.uid);
         });
-        console.log(this.reviewerIds);
       }
     );
   }
@@ -59,17 +53,16 @@ export class SignInComponent implements OnInit {
     this.authService.login(formValue.email, formValue.password)
       .subscribe(
         response => {
-          this.router.navigate(['reviewer-dashboard']);
           alert("Successfully logged in");
           let uid = response.auth.uid;
           console.log(uid);
 
           if(this.studentIds.indexOf(uid) !== -1){
             // user is a student
-            console.log('Student Logged In');
+            this.router.navigate(['student-dashboard']);
           }else if(this.reviewerIds.indexOf(uid) !== -1){
             // user is a reviewer
-            console.log('Reviewer Logged In');
+            this.router.navigate(['reviewer-dashboard']);
           }else{
             // user is an admin
             console.log('Admin Logged In');

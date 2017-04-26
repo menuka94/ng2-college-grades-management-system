@@ -17,6 +17,15 @@ export class ReviewersService {
       .map(Reviewer.fromJsonArray);
   }
 
+  getReviewerByUserId(uid: string): Observable<Reviewer>{
+    return this.af.database.list('reviewers', {
+      query: {
+        orderByChild: 'uid',
+        equalTo: uid
+      }
+    }).map(results => results[0]);
+  }
+
   createNewReviewer(userId: string, reviewer: Reviewer): Observable<any>{
     let reviewerToSave = Object.assign({}, reviewer);
     let dataToSave = {};

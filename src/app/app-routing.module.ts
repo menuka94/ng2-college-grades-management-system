@@ -14,6 +14,7 @@ import {GeneralSignUpComponent} from "./general-sign-up/general-sign-up.componen
 import {AuthGuard} from "./shared/security/auth.guard";
 import {ReviewerAllStudentsComponent} from "./reviewer-components/reviewer-all-students/reviewer-all-students.component";
 import {ReviewerSingleStudentComponent} from "./reviewer-components/reviewer-single-student/reviewer-single-student.component";
+import {StudentDashboardComponent} from "./student-components/student-dashboard/student-dashboard.component";
 
 
 export const routes: Routes = [
@@ -28,6 +29,11 @@ export const routes: Routes = [
   {
     path: 'student-sign-up',
     component: StudentSignUpComponent,
+  },
+  {
+    path: 'student-dashboard',
+    component: StudentDashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'verified-reviewers',
