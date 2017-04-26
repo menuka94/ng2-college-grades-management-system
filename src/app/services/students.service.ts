@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {AngularFire, FirebaseRef} from "angularfire2";
+import {AngularFire, FirebaseObjectObservable, FirebaseRef} from "angularfire2";
 import {Observable} from "rxjs/Observable";
 import {Student} from "../models/Student";
 import {Subject} from "rxjs/Subject";
@@ -25,9 +25,6 @@ export class StudentsService {
       }
     }).map(results => results[0]);
   }
-
-
-
 
   firebaseUpdate(dataToSave){
     const subject = new Subject();

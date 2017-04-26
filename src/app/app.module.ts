@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, ReflectiveInjector} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -89,7 +89,7 @@ import { ReviewersListComponent } from './admin-components/reviewers-list/review
     StudentsService,
     ReviewersService,
     AdminService,
-    SemestersService
+    SemestersService,
   ],
   bootstrap: [AppComponent]
 })

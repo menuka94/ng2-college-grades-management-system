@@ -1,5 +1,5 @@
 export class Student {
-  constructor(public userId: number,
+  constructor(public userId: string,
               public firstName: string,
               public lastName: string,
               public gender: string,
