@@ -1,9 +1,9 @@
 <button class="btn btn-default" routerLink="../">All Students</button>
 <div class="row">
-  <div class="col-md-8 col-lg-8 col-sm-8">
+  <div class="col-md-6 col-lg-6 col-sm-6">
     <h2>Student Academic Record</h2>
-    <div class="panel panel-default" *ngFor="let semester of semesters">
-      <div class="panel-heading">Semester: {{semester?.number}}</div>
+    <div class="panel panel-primary" *ngFor="let semester of semesters">
+      <div class="panel-heading semester-heading">Semester: {{semester?.number}}</div>
       <div class="panel-body">
         Modules <div class="pull-right">SGPA: {{semester?.sgpa}}</div>
       </div>
@@ -23,10 +23,12 @@
         </tr>
       </table>
     </div>
-
   </div>
   <div class="col-md-4 col-lg-4 col-sm-4">
-    <div class="well">
+    <div class="panel panel-success">
+      <div class="panel-heading" style="font-size: 20pt">
+        Student's Details
+      </div>
       <ul class="list-group">
         <li class="list-group-item">Name: {{student?.firstName}} {{student?.lastName}}</li>
         <li class="list-group-item">Gender: {{student?.gender}}</li>
@@ -35,5 +37,24 @@
         <li class="list-group-item">Department: {{student?.department}}</li>
       </ul>
     </div>
+    <div class="row">
+      <div class="col-md-offset-1">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4>Feedback</h4>
+          </div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item">Rating: </li>
+              <li class="list-group-item">Comment: </li>
+              <li class="list-group-item">Reviewer</li>
+              <li class="list-group-item">Date: </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
+
 </div>

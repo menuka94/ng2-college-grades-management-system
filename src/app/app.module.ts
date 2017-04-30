@@ -44,6 +44,9 @@ import {SemestersService} from "./services/semesters.service";
 import { StudentsListComponent } from './reviewer-components/reviewer-all-students/students-list/students-list.component';
 import {ReviewerVerifiedGuard} from "./shared/security/reviewer-verified.guard";
 import { ReviewersListComponent } from './admin-components/reviewers-list/reviewers-list.component';
+import { NewFeedbackComponent } from './reviewer-components/new-feedback/new-feedback.component';
+import { AllFeedbacksComponent } from './reviewer-components/all-feedbacks/all-feedbacks.component';
+import {FeedbackService} from "./services/feedback.service";
 
 @NgModule({
   declarations: [
@@ -70,7 +73,9 @@ import { ReviewersListComponent } from './admin-components/reviewers-list/review
     LandingPageComponent,
     GeneralSignUpComponent,
     StudentsListComponent,
-    ReviewersListComponent
+    ReviewersListComponent,
+    NewFeedbackComponent,
+    AllFeedbacksComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ import { ReviewersListComponent } from './admin-components/reviewers-list/review
     ReviewersService,
     AdminService,
     SemestersService,
+    FeedbackService
   ],
   bootstrap: [AppComponent]
 })
