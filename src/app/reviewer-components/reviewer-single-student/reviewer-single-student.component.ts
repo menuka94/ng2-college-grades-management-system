@@ -1,10 +1,12 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Student} from "../../models/Student";
+import {Module} from "../../models/Module"
 import {ActivatedRoute, Router} from "@angular/router";
 import {SemestersService} from "../../services/semesters.service";
 import {Semester} from "../../models/Semester";
 import {Observable} from "rxjs/Observable";
 import {StudentsService} from "../../services/students.service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-reviewer-single-student',
@@ -18,6 +20,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
 
   semesters: Semester[] = [];
   semesters$: Observable<Semester[]>;
+  allModules = {};
 
   constructor(private route: ActivatedRoute,
               private semestersService: SemestersService,
@@ -43,13 +46,21 @@ export class ReviewerSingleStudentComponent implements OnInit {
         this.semesters = [];
         data.map(semester => {
           let s = Semester.fromJson(semester);
+          // get modules of the semester
+          this.semestersService.getModulesOfSemester(studentId, semester.number)
+            .subscribe(
+              response => {
+                semester.modules = response;
+                this.allModules[semester.number] = semester.modules;
+              }
+            );
           this.semesters.push(s);
         });
 
         console.log("Semesters[]: ", this.semesters);
       },
       err => {
-
+        console.log("Error: ", err);
       }
     );
   }

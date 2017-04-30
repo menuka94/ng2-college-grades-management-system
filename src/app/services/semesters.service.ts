@@ -19,13 +19,11 @@ export class SemestersService {
 
   getSemestersOfStudent(studentId: string): Observable<Semester[]>{
     return this.af.database.list('semesters/' + studentId)
-      .do(results => console.log('semesters(): ', results))
       .map(Semester.fromJsonArray);
   }
 
-  getModulesOfSemester(studentId, string, semesterId: string): Observable<Module[]>{
-    return this.af.database.list('semesters/' + studentId + '/modules')
-      .do(results => console.log('Modules: ', results))
+  getModulesOfSemester(studentId: string, semesterId: string): Observable<Module[]>{
+    return this.af.database.list('semesters/' + studentId + '/' + semesterId + '/modules')
       .map(Module.fromJsonArray);
   }
 

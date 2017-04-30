@@ -15,6 +15,12 @@
           <th>Credits</th>
           <th>Grade</th>
         </tr>
+        <tr *ngFor="let module of allModules[semester.number]">
+          <th>{{module?.code}}</th>
+          <th>{{module?.name}}</th>
+          <th>{{module?.credits}}</th>
+          <th>{{module?.grade}}</th>
+        </tr>
       </table>
     </div>
 

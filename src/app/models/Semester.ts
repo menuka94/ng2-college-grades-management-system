@@ -16,8 +16,5 @@ export class Semester {
   static fromJsonArray(json: any[]): Semester[] {
     return json.map(Semester.fromJson);
   }
-
-  get getModules(): Module[]{
-    return this.modules;
-  }
 }
+
