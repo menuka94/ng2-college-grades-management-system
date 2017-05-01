@@ -43,10 +43,16 @@ export class AuthService{
 
     promise
       .then(res => {
-        const authInfo = new AuthInfo(this.auth.getAuth().uid);
-        this.authInfo$.next(authInfo);
-        subject.next(res);
-        subject.complete();
+        let authInfo;
+        this.auth.subscribe(authState => {
+          if(authState){
+            authInfo = new AuthInfo(authState.uid);
+            this.authInfo$.next(authInfo);
+            subject.next(res);
+            subject.complete();
+          }
+        });
+
       },
       err => {
         this.authInfo$.error(err);

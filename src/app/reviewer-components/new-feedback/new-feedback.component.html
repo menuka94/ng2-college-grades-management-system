@@ -1,15 +1,24 @@
-<div class="row">
-  <div class="col-md-6 col-lg-6 col-sm-6">
+<div class="panel panel-default">
+  <div class="panel-heading">
     <h3>New Feedback</h3>
+  </div>
+  <div class="panel-body">
     <form [formGroup]="form" autocomplete="off" novalidate>
       <div class="form-group">
         <label>Rating</label>
-        <input class="form-control" type="text" name="rating" formControlName="rating">
+        <select class="form-control" name="rating" formControlName="rating">
+          <option value="5">5 Stars - Excellent</option>
+          <option value="4">4 Stars - Good</option>
+          <option value="3">3 Stars - Average</option>
+          <option value="2">2 Stars - Terrible</option>
+          <option value="1">1 Star - Trying to miss the batch?</option>
+        </select>
       </div>
       <div class="form-group">
         <label>Comment</label>
         <input class="form-control" type="text" name="comment" formControlName="comment">
       </div>
+      <button class="btn btn-warning" (click)="saveFeedback()">Add</button>
     </form>
   </div>
 </div>

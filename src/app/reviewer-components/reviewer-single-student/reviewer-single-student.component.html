@@ -1,7 +1,7 @@
 <button class="btn btn-default" routerLink="../">All Students</button>
 <div class="row">
   <div class="col-md-6 col-lg-6 col-sm-6">
-    <h2>Student Academic Record</h2>
+    <h2>Student's Academic Record</h2>
     <div class="panel panel-primary" *ngFor="let semester of semesters">
       <div class="panel-heading semester-heading">Semester: {{semester?.number}}</div>
       <div class="panel-body">
@@ -24,7 +24,7 @@
       </table>
     </div>
   </div>
-  <div class="col-md-4 col-lg-4 col-sm-4">
+  <div class="col-md-6 col-lg-6 col-sm-6">
     <div class="panel panel-success">
       <div class="panel-heading" style="font-size: 20pt">
         Student's Details
@@ -37,11 +37,18 @@
         <li class="list-group-item">Department: {{student?.department}}</li>
       </ul>
     </div>
+
     <div class="row">
-      <div class="col-md-offset-1">
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <app-new-feedback [studentId]="student?.userId"></app-new-feedback>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h4>Feedback</h4>
+            Feedback
           </div>
           <div class="panel-body">
             <ul class="list-group">

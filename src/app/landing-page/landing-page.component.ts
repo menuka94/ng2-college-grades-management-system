@@ -12,20 +12,11 @@ import {AuthService} from "../shared/security/auth.service";
 })
 export class LandingPageComponent implements OnInit {
   public heroes: FirebaseObjectObservable<DataSnapshot>;
-  public heroesArray: Hero[];
-  private hero: Hero;
   public uid;
   public email;
 
   constructor(private af: AngularFire, public authService: AuthService) {
-    this.heroes = af.database.object('heroes', {preserveSnapshot: true});
-    this.heroes.subscribe(snapshot => {
-      // console.log(snapshot.key);
-      // console.log(snapshot.val());
-      // this.hero.$id  = snapshot.key;
-      // this.hero.name = snapshot.val();
-      // this.heroesArray.push(this.hero);
-    });
+
   }
 
   ngOnInit() {
