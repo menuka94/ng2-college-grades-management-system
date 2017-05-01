@@ -12,6 +12,11 @@ export class FeedbackService {
     this.sdkDb = fb.database().ref();
   }
 
+  getAllFeedback(): Observable<Feedback[]>{
+    return this.af.database.list('feedback')
+      .map(results => Feedback.fromJsonArray(results));
+  }
+
   getFeedbackOfStudent(studentId: string) : Observable<Feedback[]>{
     return this.af.database.list('feedback', {
       query: {

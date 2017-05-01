@@ -48,6 +48,8 @@ import { NewFeedbackComponent } from './reviewer-components/new-feedback/new-fee
 import {FeedbackService} from "./services/feedback.service";
 import { ReviewersFeedbackComponent } from './reviewer-components/reviewers-feedback/reviewers-feedback.component';
 import { StudentsFeedbackComponent } from './student-components/students-feedback/students-feedback.component';
+import { FeedbackListModelComponent } from './feedback-list-model/feedback-list-model.component';
+import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedback.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { StudentsFeedbackComponent } from './student-components/students-feedbac
     NewFeedbackComponent,
     ReviewersFeedbackComponent,
     StudentsFeedbackComponent,
+    FeedbackListModelComponent,
+    AllFeedbackComponent,
   ],
   imports: [
     BrowserModule,

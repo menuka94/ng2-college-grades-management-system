@@ -15,6 +15,7 @@ import {AuthGuard} from "./shared/security/auth.guard";
 import {ReviewerAllStudentsComponent} from "./reviewer-components/reviewer-all-students/reviewer-all-students.component";
 import {ReviewerSingleStudentComponent} from "./reviewer-components/reviewer-single-student/reviewer-single-student.component";
 import {StudentDashboardComponent} from "./student-components/student-dashboard/student-dashboard.component";
+import {AllFeedbackComponent} from "./admin-components/all-feedback/all-feedback.component";
 
 
 export const routes: Routes = [
@@ -48,6 +49,11 @@ export const routes: Routes = [
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent
+  },
+  {
+    path: 'all-feedback',
+    component: AllFeedbackComponent,
+    // canActivate: []
   },
   {
     path: 'reviewer-sign-up',
