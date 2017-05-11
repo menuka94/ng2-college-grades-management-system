@@ -37,7 +37,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
       }
     );
 
-    console.log('studentId: ', studentId);
+    // console.log('studentId: ', studentId);
 
     this.semesters$ = this.semestersService.getSemestersOfStudent(studentId);
 
@@ -57,7 +57,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
           this.semesters.push(s);
         });
 
-        console.log("Semesters[]: ", this.semesters);
+        // console.log("Semesters[]: ", this.semesters);
       },
       err => {
         console.log("Error: ", err);

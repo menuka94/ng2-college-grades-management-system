@@ -44,24 +44,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12 col-lg-12 col-sm-12">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            Feedback
-          </div>
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">Rating: </li>
-              <li class="list-group-item">Comment: </li>
-              <li class="list-group-item">Reviewer</li>
-              <li class="list-group-item">Date: </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <h4>Test StudentId: {{student?.userId}}</h4>
+    <app-reviewer-feedback-history [studentId]="student?.userId"></app-reviewer-feedback-history>
   </div>
 
 </div>

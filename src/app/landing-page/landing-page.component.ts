@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {AngularFire, FirebaseObjectObservable} from "angularfire2";
 import * as firebase from "firebase/app";
 import DataSnapshot = firebase.database.DataSnapshot;
-import {Hero} from "../models/Hero";
 import {AuthService} from "../shared/security/auth.service";
 
 @Component({
@@ -11,9 +10,13 @@ import {AuthService} from "../shared/security/auth.service";
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  public heroes: FirebaseObjectObservable<DataSnapshot>;
   public uid;
   public email;
+
+  public title: string = 'Popover title';
+  public message: string = 'Popover description';
+  public confirmClicked: boolean = false;
+  public cancelClicked: boolean = false;
 
   constructor(private af: AngularFire, public authService: AuthService) {
 
@@ -30,3 +33,4 @@ export class LandingPageComponent implements OnInit {
   }
 
 }
+

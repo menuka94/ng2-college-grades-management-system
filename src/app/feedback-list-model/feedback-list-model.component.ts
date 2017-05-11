@@ -19,6 +19,9 @@ export class FeedbackListModelComponent implements OnInit {
   @Input('studentExtras') feedbackStudentExtras = {};
   @Input('reviewerExtras') feedbackReviewerExtras = {};
 
+  @Input('showStudent') showStudent: boolean;
+  @Input('showReviewer') showReviewer: boolean;
+
   constructor(private studentsService: StudentsService,
               private reviewersService: ReviewersService) { }
 

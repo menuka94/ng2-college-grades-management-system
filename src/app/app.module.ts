@@ -91,7 +91,10 @@ import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedba
     MaterialModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig, authConfig)
+    AngularFireModule.initializeApp(firebaseConfig, authConfig),
+    // ConfirmationPopoverModule.forRoot({
+    //   confirmButtonType: 'danger'
+    // })
   ],
   providers: [
     AuthService,

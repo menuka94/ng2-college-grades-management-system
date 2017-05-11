@@ -1,0 +1,8 @@
+<!--Feedback history of the Student-->
+<h3>Received Feedback</h3>
+<app-feedback-list [filteredFeedback]="feedback$ | async"
+                   [studentExtras]="feedbackStudentExtras"
+                   [reviewerExtras]="feedbackReviewerExtras"
+                   [showStudent]=false
+                   [showReviewer]=true></app-feedback-list>
+

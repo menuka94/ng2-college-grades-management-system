@@ -52,6 +52,9 @@ export class NewFeedbackComponent implements OnInit {
 
     console.log("Feedback: before calling service: ", feedback);
 
-    this.feedbackService.createNewFeedback(feedback);
+    if(confirm("Are you sure you want to give this feedback?")){
+      this.feedbackService.createNewFeedback(feedback);
+      this.form.reset();
+    }
   }
 }
