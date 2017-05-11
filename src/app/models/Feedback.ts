@@ -3,12 +3,13 @@ export class Feedback{
               public studentId: string,
               public rating: string,
               public comment: string,
-              public date: string){
+              public date: string,
+              public key: string){
 
   }
 
-  static fromJson({reviewerId, studentId, rating, comment, date}){
-    return new Feedback(reviewerId, studentId, rating, comment, date);
+  static fromJson({reviewerId, studentId, rating, comment, date, key}){
+    return new Feedback(reviewerId, studentId, rating, comment, date, key);
   }
 
   static fromJsonArray(json: any[]): Feedback[] {

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {Feedback} from "../../models/Feedback";
 import {FeedbackService} from "../../services/feedback.service";
@@ -10,7 +10,11 @@ import {AngularFire, AngularFireAuth} from "angularfire2";
   templateUrl: './reviewers-feedback.component.html',
   styleUrls: ['./reviewers-feedback.component.css']
 })
-export class ReviewersFeedbackComponent implements OnInit {
+export class ReviewersFeedbackComponent implements OnInit, OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
+
   reviewerId: string;
 
   feedback$: Observable<Feedback[]>;
@@ -31,9 +35,8 @@ export class ReviewersFeedbackComponent implements OnInit {
         for(let single_feedback of feedback){
           this.studentsService.getStudentByUserId(single_feedback.studentId)
             .subscribe(student => {
-              console.log('Received Reviewer: ', student);
-              this.feedbackStudentExtras[single_feedback.studentId + single_feedback.reviewerId +single_feedback.date] = name;
-              // using 'studentId + date' as a unique identifier for the feedback object
+              console.log('Received Student: ', student);
+              this.feedbackStudentExtras[single_feedback.key] = name;
             });
         }
       });

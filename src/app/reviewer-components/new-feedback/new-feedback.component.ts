@@ -48,7 +48,7 @@ export class NewFeedbackComponent implements OnInit {
     let reviewerId: string = this.authService.getCurrentUser().uid;
     let date:string = new Date().toDateString();
 
-    let feedback: Feedback = new Feedback(reviewerId, studentId, rating, comment, date);
+    let feedback: Feedback = new Feedback(reviewerId, studentId, rating, comment, date, "");
 
     console.log("Feedback: before calling service: ", feedback);
 

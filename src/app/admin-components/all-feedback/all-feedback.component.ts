@@ -4,6 +4,7 @@ import {Feedback} from "../../models/Feedback";
 import {Observable} from "rxjs/Observable";
 import {StudentsService} from "../../services/students.service";
 import {ReviewersService} from "../../services/reviewers.service";
+import {single} from "rxjs/operator/single";
 
 @Component({
   selector: 'app-all-feedback',
@@ -33,17 +34,13 @@ export class AllFeedbackComponent implements OnInit {
             this.studentsService.getStudentByUserId(single_feedback.studentId)
               .subscribe(student => {
                 let name = student.firstName + ' ' + student.lastName;
-                this.feedbackStudentExtras[single_feedback.reviewerId + single_feedback.date] = name;
-                // using 'reviewerId + date' as a unique identifier for a feedback object
-                console.log('Student: ', this.feedbackStudentExtras[single_feedback.reviewerId + single_feedback.date]);
+                this.feedbackStudentExtras[single_feedback.key] = name;
               });
 
             this.reviewersService.getReviewerByUserId(single_feedback.reviewerId)
               .subscribe(reviewer => {
                 let name = reviewer.firstName + ' ' + reviewer.lastName;
-                this.feedbackReviewerExtras[single_feedback.studentId + single_feedback.reviewerId + single_feedback.date] = name;
-                // using 'studentId + date' as a unique identifier for a feedback object
-                console.log('Reviewer: ', this.feedbackReviewerExtras[single_feedback.studentId + single_feedback.reviewerId + single_feedback.date]);
+                this.feedbackReviewerExtras[single_feedback.key] = name;
               });
 
           }

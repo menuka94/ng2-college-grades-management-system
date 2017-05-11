@@ -40,8 +40,9 @@ export class FeedbackService {
   }
 
   createNewFeedback(feedback: Feedback){
-    let feedbackToSave = Object.assign({}, feedback);
     let newFeedbackKey = this.sdkDb.child('feedback').push().key;
+    feedback.key = newFeedbackKey;
+    let feedbackToSave = Object.assign({}, feedback);
     let dataToSave = {};
     dataToSave['feedback/'+newFeedbackKey] = feedbackToSave;
 

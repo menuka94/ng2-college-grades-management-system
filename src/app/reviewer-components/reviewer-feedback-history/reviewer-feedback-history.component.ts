@@ -35,11 +35,9 @@ export class ReviewerFeedbackHistoryComponent implements OnInit, OnChanges {
         for(let single_feedback of feedback){
           this.reviewerService.getReviewerByUserId(single_feedback.reviewerId)
             .subscribe(reviewer => {
-              // console.log('Received Reviewer: ', reviewer);
+              console.log('Received Reviewer: ', reviewer);
               let name = reviewer.firstName + ' ' + reviewer.lastName;
-              this.feedbackReviewerExtras[single_feedback.reviewerId + single_feedback.date] = name;
-              // using 'reviewerId + date' as a unique identifier for the feedback object
-              // console.log('Reviewer: StudentsFeedbackHistory: ' +  this.feedbackReviewerExtras[single_feedback.reviewerId + single_feedback.date]);
+              this.feedbackReviewerExtras[single_feedback.key] = name;
             });
         }
       });
