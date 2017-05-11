@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-8 col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
-    <app-feedback-list [filteredFeedback]="feedbackObservable | async"
-                        [feedbackObservable]="feedback$"></app-feedback-list>
+    <app-feedback-list [filteredFeedback]="allFeedback$ | async"
+                        [studentExtras]="feedbackStudentExtras "
+                      [reviewerExtras]="feedbackReviewerExtras"></app-feedback-list>
   </div>
 </div>

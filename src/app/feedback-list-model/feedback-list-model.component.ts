@@ -12,42 +12,17 @@ import {Observable} from "rxjs/Observable";
   templateUrl: './feedback-list-model.component.html',
   styleUrls: ['./feedback-list-model.component.css']
 })
-export class FeedbackListModelComponent implements OnInit, OnChanges {
+export class FeedbackListModelComponent implements OnInit {
   @Input('filteredFeedback') feedback: Feedback[];
-  @Input('feedbackObservable') feedback$: Observable<Feedback[]>;
+  @Input('allFeedback$') feedback$: Observable<Feedback[]>;
 
-  feedbackStudentExtras = {};
-  feedbackReviewerExtras = {};
+  @Input('studentExtras') feedbackStudentExtras = {};
+  @Input('reviewerExtras') feedbackReviewerExtras = {};
 
   constructor(private studentsService: StudentsService,
               private reviewersService: ReviewersService) { }
 
   ngOnInit() {
-
-  }
-
-  ngOnChanges(): void {
-    if(this.feedback$){
-      this.feedback$.subscribe(
-        response => {
-          console.log('Response', response);
-          for(let single_feedback of this.feedback){
-            this.studentsService.getStudentByUserId(single_feedback.studentId)
-              .subscribe(student => {
-                let firstName =  student.firstName;
-                this.feedbackStudentExtras[single_feedback.reviewerId + single_feedback.date] = firstName;
-                console.log('StudentFirstName: ', firstName);
-              });
-            this.reviewersService.getReviewerByUserId(single_feedback.reviewerId)
-              .subscribe(reviewer => {
-                let firstName =  reviewer.firstName;
-                single_feedback[single_feedback.reviewerId + single_feedback.date] = reviewer.firstName;
-                console.log('ReviewerFirstName: ', firstName);
-              });
-          }
-        }
-      );
-    }
 
   }
 }
