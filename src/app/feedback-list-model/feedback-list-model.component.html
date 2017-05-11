@@ -1,7 +1,7 @@
 <div *ngFor="let single_feedback of feedback" class="panel panel-primary">
   <div class="panel-heading">
-    <p *ngIf="showStudent">Student: {{feedbackStudentExtras[single_feedback?.reviewerId + single_feedback?.date]}}</p>
-    <p *ngIf="showReviewer">Reviewer: {{feedbackReviewerExtras[single_feedback?.reviewerId + single_feedback?.date]}}</p>
+    <p *ngIf="showStudent">Student: {{feedbackStudentExtras[single_feedback?.studentId + single_feedback?.reviewerId + single_feedback?.date]}}</p>
+    <p *ngIf="showReviewer">Reviewer: {{feedbackReviewerExtras[single_feedback?.studentId + single_feedback?.reviewerId + single_feedback?.date]}}</p>
   </div>
   <div class="panel-body">
     <ul class="list-group">

@@ -2,7 +2,7 @@
   <div class="col-md-6 col-lg-6 col-sm-6">
     <div *ngIf="isApproved">
       <button class="btn btn-primary" routerLink="all-students">All Students</button>
-      <button class="btn btn-primary">My Comments</button>
+      <button class="btn btn-primary" routerLink="../reviewers-feedback">My Feedback History</button>
     </div>
 
     <div *ngIf="!isApproved">

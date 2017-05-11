@@ -41,9 +41,9 @@ export class AllFeedbackComponent implements OnInit {
             this.reviewersService.getReviewerByUserId(single_feedback.reviewerId)
               .subscribe(reviewer => {
                 let name = reviewer.firstName + ' ' + reviewer.lastName;
-                this.feedbackReviewerExtras[single_feedback.reviewerId + single_feedback.date] = name;
-                // using 'reviewerId + date' as a unique identifier for a feedback object
-                console.log('Reviewer: ', this.feedbackReviewerExtras[single_feedback.reviewerId + single_feedback.date]);
+                this.feedbackReviewerExtras[single_feedback.studentId + single_feedback.reviewerId + single_feedback.date] = name;
+                // using 'studentId + date' as a unique identifier for a feedback object
+                console.log('Reviewer: ', this.feedbackReviewerExtras[single_feedback.studentId + single_feedback.reviewerId + single_feedback.date]);
               });
 
           }

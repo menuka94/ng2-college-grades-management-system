@@ -1,3 +1,9 @@
-<p>
-  reviewers-feedback works!
-</p>
+<!--All Feedback given by the Currently logged in Reviewer-->
+<h3>Feedback Given</h3>
+<app-feedback-list [filteredFeedback]="feedback$ | async"
+                   [studentExtras]="feedbackStudentExtras"
+                   [reviewerExtras]="feedbackReviewerExtras"
+                   [showStudent]=true
+                   [showReviewer]=false></app-feedback-list>
+
+

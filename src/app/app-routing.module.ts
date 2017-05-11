@@ -16,6 +16,7 @@ import {ReviewerAllStudentsComponent} from "./reviewer-components/reviewer-all-s
 import {ReviewerSingleStudentComponent} from "./reviewer-components/reviewer-single-student/reviewer-single-student.component";
 import {StudentDashboardComponent} from "./student-components/student-dashboard/student-dashboard.component";
 import {AllFeedbackComponent} from "./admin-components/all-feedback/all-feedback.component";
+import {ReviewersFeedbackComponent} from "./reviewer-components/reviewers-feedback/reviewers-feedback.component";
 
 
 export const routes: Routes = [
@@ -62,6 +63,11 @@ export const routes: Routes = [
   {
     path: 'reviewer-dashboard',
     component: ReviewerDashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reviewers-feedback',
+    component: ReviewersFeedbackComponent,
     canActivate: [AuthGuard]
   },
   {
