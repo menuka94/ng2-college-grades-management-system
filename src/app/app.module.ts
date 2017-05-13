@@ -47,7 +47,6 @@ import { ReviewersListComponent } from './admin-components/reviewers-list/review
 import { NewFeedbackComponent } from './reviewer-components/new-feedback/new-feedback.component';
 import {FeedbackService} from "./services/feedback.service";
 import { ReviewersFeedbackComponent } from './reviewer-components/reviewers-feedback/reviewers-feedback.component';
-import { StudentsFeedbackComponent } from './student-components/students-feedback/students-feedback.component';
 import { FeedbackListModelComponent } from './feedback-list-model/feedback-list-model.component';
 import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedback.component';
 
@@ -79,7 +78,6 @@ import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedba
     ReviewersListComponent,
     NewFeedbackComponent,
     ReviewersFeedbackComponent,
-    StudentsFeedbackComponent,
     FeedbackListModelComponent,
     AllFeedbackComponent,
   ],
@@ -104,6 +102,7 @@ import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedba
     ReviewersService,
     AdminService,
     SemestersService,
+    AdminService,
     FeedbackService
   ],
   bootstrap: [AppComponent]

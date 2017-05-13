@@ -1,20 +1,56 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnChanges, SimpleChanges} from "@angular/core";
 import {AuthInfo} from "./auth-info";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {AngularFire, AngularFireAuth, FirebaseAuthState} from "angularfire2";
 import {Router} from "@angular/router";
+import {StudentsService} from "../../services/students.service";
+import {ReviewersService} from "../../services/reviewers.service";
+import {AdminService} from "../../services/admin.service";
 
 @Injectable()
-export class AuthService{
+export class AuthService implements OnChanges{
+  ngOnChanges(changes: SimpleChanges): void {
+    this.studentsService.getAllStudents()
+      .subscribe(students => {
+        for(let student of students){
+          this.studentIds.push(student.userId);
+        }
+      });
+
+    this.reviewersService.getAllReviewers()
+      .subscribe(reviewers => {
+        for(let reviewer of reviewers){
+          this.reviewerIds.push(reviewer.uid);
+        }
+      });
+
+    this.adminService.getAllAdmins()
+      .subscribe(admins => {
+        for(let admin of admins){
+          this.adminIds.push(admin.userId);
+        }
+      })
+  }
+
   static UNKNOWN_USER = new AuthInfo(null);
 
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
 
+  studentIds: string[] = [];
+  reviewerIds: string[] = [];
+  adminIds: string[] = [];
+
   private currentUser: FirebaseAuthState;
 
-  constructor(private auth: AngularFireAuth, private router: Router, private af: AngularFire){
+  constructor(private auth: AngularFireAuth,
+              private router: Router,
+              private af: AngularFire,
+              private studentsService: StudentsService,
+              private reviewersService: ReviewersService,
+              private adminService: AdminService){
 
   }
+
 
   getCurrentUser(): FirebaseAuthState{
     this.af.auth.subscribe(user => {

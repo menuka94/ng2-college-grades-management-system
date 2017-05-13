@@ -4,6 +4,7 @@ import {AuthService} from "../shared/security/auth.service";
 import {Router} from "@angular/router";
 import {StudentsService} from "../services/students.service";
 import {ReviewersService} from "../services/reviewers.service";
+import {AdminService} from "../services/admin.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -19,12 +20,14 @@ export class SignInComponent implements OnInit, OnChanges{
   loginForm: FormGroup;
   studentIds: string[] = [];
   reviewerIds: string[] = [];
+  adminIds: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
               private studentsService: StudentsService,
-              private reviewersService: ReviewersService) {
+              private reviewersService: ReviewersService,
+              private adminService: AdminService) {
   }
 
   ngOnInit() {
@@ -48,6 +51,14 @@ export class SignInComponent implements OnInit, OnChanges{
         });
       }
     );
+
+    this.adminService.getAllAdmins().subscribe(
+      data => {
+        data.forEach(admin => {
+          this.adminIds.push(admin.userId);
+        });
+      }
+    );
   }
 
   login() {
@@ -67,9 +78,10 @@ export class SignInComponent implements OnInit, OnChanges{
           }else if(this.reviewerIds.indexOf(uid) !== -1){
             // user is a reviewer
             this.router.navigate(['reviewer-dashboard']);
-          }else{
+          }else if(this.adminIds.indexOf(uid) !== -1){
             // user is an admin
             console.log('Admin Logged In');
+            this.router.navigate(['admin-dashboard']);
           }
         },
         err => {
