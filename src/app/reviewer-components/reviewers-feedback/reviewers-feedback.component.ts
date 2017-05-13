@@ -27,7 +27,10 @@ export class ReviewersFeedbackComponent implements OnInit, OnChanges {
               private af: AngularFire) { }
 
   ngOnInit() {
-    this.reviewerId = this.af.auth.getAuth().uid;
+    this.af.auth
+      .subscribe(authState => {
+        this.reviewerId = authState.uid;
+      });
     this.feedback$ = this.feedbackService.getFeedbackOfReviewer(this.reviewerId);
     this.feedback$
       .subscribe(feedback => {

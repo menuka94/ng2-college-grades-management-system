@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../shared/security/auth.service";
 import {Router} from "@angular/router";
@@ -11,7 +11,11 @@ import {ReviewersService} from "../services/reviewers.service";
   styleUrls: ['./sign-in.component.css']
 })
 
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnChanges{
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
+
   loginForm: FormGroup;
   studentIds: string[] = [];
   reviewerIds: string[] = [];
@@ -69,7 +73,8 @@ export class SignInComponent implements OnInit {
           }
         },
         err => {
-          alert("Error: " + err);
+          // alert("Error: " + err);
+          alert('Email and Password does not match!');
         }
       );
   }

@@ -33,7 +33,7 @@ export class ReviewerSignUpComponent implements OnInit {
       employeeNo: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(9)]],
       email: [null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/)]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
-      confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(15)]]
+      confirmPassword: [null, [Validators.required]]
     });
   }
 

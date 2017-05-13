@@ -74,15 +74,15 @@
       <!--Password-->
       <div class="form-group">
         <label>Password</label>
-        <input #refPassword type="password" class="form-control" name="password" formControlName="password">
+        <input #refPassword type="confirmPassword" class="form-control" name="confirmPassword" formControlName="confirmPassword">
         <div [hidden]="refPassword.classList.contains('ng-pristine') || refPassword.classList.contains('ng-valid')">
-          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('required')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['confirmPassword'].hasError('required')">
             Password cannot be blank
           </div>
-          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('minLength')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['confirmPassword'].hasError('minLength')">
             Password should contain at least 4 characters
           </div>
-          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['password'].hasError('maxLength')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['confirmPassword'].hasError('maxLength')">
             Password should be less than 15 characters
           </div>
         </div>
@@ -91,10 +91,18 @@
       <!--Confirm Password-->
       <div class="form-group">
         <label>Confirm Password</label>
-        <input type="password" class="form-control" formControlName="confirmPassword">
+        <input #refConfirmPassword type="confirmPassword" class="form-control" formControlName="confirmPassword">
+        <div [hidden]="refConfirmPassword.classList.contains('ng-pristine') || refPassword.classList.contains('ng-valid')">
+          <div class="alert alert-danger" *ngIf="reviewerSignUpForm.controls['confirmPassword'].hasError('required')">
+            Passwords do not match!
+          </div>
+          <div class="alert alert-danger" *ngIf="">
+            Passwords do not match!
+          </div>
+        </div>
       </div>
 
-      <button [disabled]="reviewerSignUpForm.invalid" class="btn btn-primary" type="submit">Sign Up</button>
+      <button [disabled]="reviewerSignUpForm.invalid && !isPasswordMatch()" class="btn btn-primary" type="submit">Sign Up</button>
     </form>
   </div>
 </div>
