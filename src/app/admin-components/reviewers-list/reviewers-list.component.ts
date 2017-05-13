@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ReviewersService} from "../../services/reviewers.service";
 import {Observable} from "rxjs/Observable";
 import {Reviewer} from "../../models/Reviewer";
@@ -11,6 +11,8 @@ import {Reviewer} from "../../models/Reviewer";
 export class ReviewersListComponent implements OnInit {
   @Input()
   filteredReviewers: Reviewer[];
+
+  @Input('hideColAction') hideColAction: boolean;
 
   constructor(private reviewersService: ReviewersService) { }
 

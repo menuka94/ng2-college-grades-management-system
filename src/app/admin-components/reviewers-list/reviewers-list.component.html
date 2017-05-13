@@ -8,7 +8,7 @@
         <th>Gender</th>
         <th>Approved</th>
         <th>Email</th>
-        <th>Action</th>
+        <th *ngIf="!hideColAction">Action</th>
       </tr>
 
       <tr *ngFor="let reviewer of filteredReviewers">
@@ -22,7 +22,7 @@
             <button class="btn btn-xs btn-primary" (click)="toggleApproval(reviewer)">Approve</button>
           </div>
           <div *ngIf="reviewer?.approved == true">
-            <button class="btn btn-xs btn-primary" (click)="toggleApproval(reviewer)">Disprove</button>
+            <!--<button class="btn btn-xs btn-primary" (click)="toggleApproval(reviewer)">Disprove</button>-->
           </div>
         </td>
       </tr>

@@ -11,4 +11,5 @@
     <input type="text" class="form-control" (keyup)="filter(searchText.value)" #searchText>
   </div>
 </div>
-<app-reviewers-list [filteredReviewers]="reviewersToBeVerified"></app-reviewers-list>
+<app-reviewers-list [filteredReviewers]="reviewersToBeVerified"
+                    [hideColAction]="false"></app-reviewers-list>
