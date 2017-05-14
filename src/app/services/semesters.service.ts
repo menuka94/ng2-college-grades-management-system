@@ -14,6 +14,10 @@ export class SemestersService {
   }
 
   getAllSGPAsOfStudent(studentId: string){
+    
+  }
+
+  removeSemester(number: string, studentId: string){
 
   }
 

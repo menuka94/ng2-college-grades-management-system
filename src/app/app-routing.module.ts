@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {AppComponent} from "./app.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {StudentSignUpComponent} from "./student-components/student-sign-up/student-sign-up.component";
 import {VerifiedReviewersComponent} from "./admin-components/verified-reviewers/verified-reviewers.component";
@@ -17,7 +16,6 @@ import {ReviewerSingleStudentComponent} from "./reviewer-components/reviewer-sin
 import {StudentDashboardComponent} from "./student-components/student-dashboard/student-dashboard.component";
 import {AllFeedbackComponent} from "./admin-components/all-feedback/all-feedback.component";
 import {ReviewersFeedbackComponent} from "./reviewer-components/reviewers-feedback/reviewers-feedback.component";
-
 
 export const routes: Routes = [
   {
@@ -40,21 +38,22 @@ export const routes: Routes = [
   {
     path: 'verified-reviewers',
     component: VerifiedReviewersComponent,
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'verify-reviewers',
     component: AdminVerifyReviewersComponent,
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'admin-dashboard',
-    component: AdminDashboardComponent
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'all-feedback',
     component: AllFeedbackComponent,
-    // canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'reviewer-sign-up',
@@ -72,7 +71,7 @@ export const routes: Routes = [
   },
   {
     path: 'all-students',
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

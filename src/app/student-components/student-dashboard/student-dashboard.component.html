@@ -1,6 +1,54 @@
 <div class="row">
   <div class="col-md-4">
-    <button class="btn btn-primary">My Grades</button>
     <button class="btn btn-primary">Received Feedback</button>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-lg-6 col-sm-6">
+    <h2>Student's Academic Record</h2>
+    <div class="panel panel-primary" *ngFor="let semester of semesters">
+      <div class="panel-heading semester-heading">
+        Semester: {{semester?.number}}
+        <button class="btn btn-danger btn-xs pull-right" (click)="removeSemester(semester.number)">Remove</button>
+      </div>
+      <div class="panel-body">
+        Modules <div class="pull-right">SGPA: {{semester?.sgpa}}</div>
+      </div>
+
+      <table class="table">
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Credits</th>
+          <th>Grade</th>
+          <th>Edit</th>
+        </tr>
+        <tr *ngFor="let module of allModules[semester.number]">
+          <th>{{module?.code}}</th>
+          <th>{{module?.name}}</th>
+          <th>{{module?.credits}}</th>
+          <th>{{module?.grade}}</th>
+          <th><button class="btn btn-success btn-xs">Edit</button></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading" style="font-size: 20pt">
+        My Details
+        <button class="btn btn-warning">Edit</button>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">Name: {{student?.firstName}} {{student?.lastName}}</li>
+        <li class="list-group-item">Gender: {{student?.gender}}</li>
+        <li class="list-group-item">Birthday: {{student?.birthday}}</li>
+        <li class="list-group-item">IndexNo: {{student?.indexNo}}</li>
+        <li class="list-group-item">Department: {{student?.department}}</li>
+      </ul>
+    </div>
+
+    <app-reviewer-feedback-history [studentId]="student?.userId"></app-reviewer-feedback-history>
+  </div>
+
 </div>

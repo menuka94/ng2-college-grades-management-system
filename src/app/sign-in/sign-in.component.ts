@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {StudentsService} from "../services/students.service";
 import {ReviewersService} from "../services/reviewers.service";
 import {AdminService} from "../services/admin.service";
+import {AngularFire, AngularFireAuth, AuthMethods, AuthProviders} from "angularfire2";
 
 @Component({
   selector: 'app-sign-in',
@@ -25,6 +26,8 @@ export class SignInComponent implements OnInit, OnChanges{
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private router: Router,
+              private afAuth: AngularFireAuth,
+              private af: AngularFire,
               private studentsService: StudentsService,
               private reviewersService: ReviewersService,
               private adminService: AdminService) {
@@ -62,6 +65,7 @@ export class SignInComponent implements OnInit, OnChanges{
   }
 
   login() {
+    this.authService.logout();
     console.log(this.loginForm.value);
     const formValue = this.loginForm.value;
 
@@ -70,11 +74,10 @@ export class SignInComponent implements OnInit, OnChanges{
         response => {
           alert("Successfully logged in");
           let uid = response.auth.uid;
-          console.log(uid);
 
           if(this.studentIds.indexOf(uid) !== -1){
             // user is a student
-            this.router.navigate(['student-dashboard']);
+            this.router.navigate(['student-dashboard'], {queryParams: {studentId: uid}});
           }else if(this.reviewerIds.indexOf(uid) !== -1){
             // user is a reviewer
             this.router.navigate(['reviewer-dashboard']);
@@ -85,8 +88,8 @@ export class SignInComponent implements OnInit, OnChanges{
           }
         },
         err => {
-          // alert("Error: " + err);
-          alert('Email and Password does not match!');
+          alert("Error: " + err);
+          // alert('Email and Password does not match!');
         }
       );
   }

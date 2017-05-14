@@ -103,6 +103,6 @@ export class AuthService implements OnChanges{
     console.log("logout()");
     this.auth.logout();
     this.authInfo$.next(AuthService.UNKNOWN_USER);
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 }
