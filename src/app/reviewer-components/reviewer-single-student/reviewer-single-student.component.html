@@ -1,7 +1,8 @@
 <button class="btn btn-default" routerLink="../">All Students</button>
 <div class="row">
   <div class="col-md-6 col-lg-6 col-sm-6">
-    <h2>Student's Academic Record</h2>
+    <h3>Student's Academic Records</h3>
+    <h4>Overall GPA: {{ogpa}}</h4>
     <div class="panel panel-primary" *ngFor="let semester of semesters">
       <div class="panel-heading semester-heading">Semester: {{semester?.number}}</div>
       <div class="panel-body">

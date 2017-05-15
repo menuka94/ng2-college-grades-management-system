@@ -13,7 +13,11 @@ import {forEach} from "@angular/router/src/utils/collection";
   templateUrl: 'reviewer-single-student.component.html',
   styleUrls: ['reviewer-single-student.component.css']
 })
-export class ReviewerSingleStudentComponent implements OnInit {
+export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setOGPA();
+  }
+
   @Input('student')
   student$: Observable<Student>;
   student: Student;
@@ -21,11 +25,28 @@ export class ReviewerSingleStudentComponent implements OnInit {
   semesters: Semester[] = [];
   semesters$: Observable<Semester[]>;
   allModules = {};
+  ogpa: string;
 
   constructor(private route: ActivatedRoute,
               private semestersService: SemestersService,
               private studentsService: StudentsService,
               private router: Router) {
+  }
+
+  setOGPA(){
+    let ogpa: number = 0.00;
+    let numerator: number = 0.00;
+    let denominator: number = 0.00;
+    for(let semester of this.semesters){
+      numerator += +semester.totalCredits * +semester.sgpa;
+      denominator += +semester.totalCredits;
+    }
+
+    if(denominator > 0){
+      ogpa = numerator/denominator;
+    }
+
+    this.ogpa = ogpa.toString().substr(0, 6);
   }
 
   ngOnInit() {
@@ -55,6 +76,7 @@ export class ReviewerSingleStudentComponent implements OnInit {
               }
             );
           this.semesters.push(s);
+          this.setOGPA();
         });
 
         // console.log("Semesters[]: ", this.semesters);
