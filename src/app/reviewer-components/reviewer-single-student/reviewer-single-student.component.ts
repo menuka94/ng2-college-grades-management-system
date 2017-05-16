@@ -1,12 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Student} from "../../models/Student";
-import {Module} from "../../models/Module"
 import {ActivatedRoute, Router} from "@angular/router";
 import {SemestersService} from "../../services/semesters.service";
 import {Semester} from "../../models/Semester";
 import {Observable} from "rxjs/Observable";
 import {StudentsService} from "../../services/students.service";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-reviewer-single-student',
@@ -38,13 +36,18 @@ export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
     let numerator: number = 0.00;
     let denominator: number = 0.00;
     for(let semester of this.semesters){
-      numerator += +semester.totalCredits * +semester.sgpa;
-      denominator += +semester.totalCredits;
+      console.log("Current Semester Total Credits: " + semester.totalCredits);
+      console.log("Current Semester SGPA: " + semester.sgpa);
+      if(semester.sgpa && semester.totalCredits){
+        numerator += +semester.totalCredits * +semester.sgpa;
+        denominator += +semester.totalCredits;
+      }
     }
 
     if(denominator > 0){
       ogpa = numerator/denominator;
     }
+
 
     this.ogpa = ogpa.toString().substr(0, 6);
   }

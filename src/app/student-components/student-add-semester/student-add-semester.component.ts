@@ -10,6 +10,7 @@ export class StudentAddSemesterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
