@@ -1,14 +1,19 @@
-<div class="row">
-  <div class="col-md-6 col-lg-6 col-sm-6">
-    <div *ngIf="isApproved">
-      <button class="btn btn-primary" routerLink="../all-students">All Students</button>
-      <button class="btn btn-primary" routerLink="../reviewers-feedback">My Feedback History</button>
-    </div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-8 col-lg-8 col-sm-8">
+      <h3>Reviewer's Dashboard</h3>
+      <div class="button-group">
+        <!--Approved Reviewer-->
+        <div *ngIf="isApproved">
+          <button class="btn btn-success btn-block" routerLink="../all-students"><h3>All Students</h3></button>
+          <button class="btn btn-primary btn-block" routerLink="../reviewers-feedback"><h3>My Feedback History</h3></button>
+        </div>
 
-    <div *ngIf="!isApproved">
-      <h3>You're not approved by the System Admin!</h3>
+        <!--Reviewer Not Approved-->
+        <div *ngIf="!isApproved">
+          <h3>You're not approved by the System Admin!</h3>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-

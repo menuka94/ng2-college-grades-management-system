@@ -95,14 +95,14 @@ import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedba
     // })
   ],
   providers: [
-    AuthService,
-    AuthGuard,
     ReviewerVerifiedGuard,
     StudentsService,
     ReviewersService,
     AdminService,
     SemestersService,
     AdminService,
+    AuthService,
+    AuthGuard,
     FeedbackService
   ],
   bootstrap: [AppComponent]

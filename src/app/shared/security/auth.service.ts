@@ -49,6 +49,16 @@ export class AuthService implements OnChanges{
               private reviewersService: ReviewersService,
               private adminService: AdminService){
 
+    /*
+    this.af.auth.subscribe(auth => {
+      if(auth){
+        const authInfo = new AuthInfo(auth.uid);
+        this.authInfo$.next(authInfo);
+      }else{
+        this.authInfo$.next(AuthService.UNKNOWN_USER);
+      }
+    });
+    */
   }
 
 

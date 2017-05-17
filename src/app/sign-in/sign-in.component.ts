@@ -85,6 +85,8 @@ export class SignInComponent implements OnInit, OnChanges{
             // user is an admin
             console.log('Admin Logged In');
             this.router.navigate(['admin-dashboard']);
+          }else{
+            alert("Error logging in");
           }
         },
         err => {

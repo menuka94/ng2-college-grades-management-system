@@ -1,9 +1,10 @@
 <!--All Feedback given by the Currently logged in Reviewer-->
 <h3>Feedback Given</h3>
+<button class="btn btn-success" routerLink="../reviewer-dashboard">Back to Dashboard</button>
 <app-feedback-list [filteredFeedback]="feedback$ | async"
                    [studentExtras]="feedbackStudentExtras"
                    [reviewerExtras]="feedbackReviewerExtras"
                    [showStudent]="true"
-                   [showReviewer]="false"></app-feedback-list>
+                   [showReviewer]="true"></app-feedback-list>
 
 
