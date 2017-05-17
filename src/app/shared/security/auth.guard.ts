@@ -22,16 +22,16 @@ export class AuthGuard implements CanActivate{
       });
   }
 
-  canActivate(route: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): Observable<boolean>{
-    return this.authService.authInfo$
-      .map(authInfo => authInfo.isLoggedIn())
-      .take(1)
-      .do(isAllowed => {
-        if(!isAllowed){
-          this.router.navigate(['/login'])
-            .then(console.log);
-        }
-      })
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.authService.authInfo$.map(authInfo => {
+      if (!authInfo.isLoggedIn()) {
+        this.router.navigate(['/login']);
+      }
+      return authInfo.isLoggedIn();
+    });
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.canActivate(route, state);
   }
 }

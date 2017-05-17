@@ -71,7 +71,7 @@ export const routes: Routes = [
   },
   {
     path: 'all-students',
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
