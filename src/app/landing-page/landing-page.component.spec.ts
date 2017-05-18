@@ -117,4 +117,14 @@ fdescribe('LandingPageComponent', () => {
   it('should create the app', async(() => {
     expect(component).toBeTruthy();
   }));
+
+  it(`should render 'Welcome' in an h2 tag`, async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Welcome!');
+  }));
+
+  it(`should render 'College Grades Management System' in an h3 tag`, async(() => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h3').textContent).toContain('College Grades Management System');
+  }));
 });
