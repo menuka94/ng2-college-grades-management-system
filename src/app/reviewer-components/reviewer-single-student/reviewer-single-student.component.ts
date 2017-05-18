@@ -1,10 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Student} from "../../models/Student";
-import {ActivatedRoute, Router} from "@angular/router";
-import {SemestersService} from "../../services/semesters.service";
-import {Semester} from "../../models/Semester";
-import {Observable} from "rxjs/Observable";
-import {StudentsService} from "../../services/students.service";
+import {Student} from '../../models/Student';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SemestersService} from '../../services/semesters.service';
+import {Semester} from '../../models/Semester';
+import {Observable} from 'rxjs/Observable';
+import {StudentsService} from '../../services/students.service';
 
 @Component({
   selector: 'app-reviewer-single-student',
@@ -12,10 +12,6 @@ import {StudentsService} from "../../services/students.service";
   styleUrls: ['reviewer-single-student.component.css']
 })
 export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
-  ngOnChanges(changes: SimpleChanges): void {
-    this.setOGPA();
-  }
-
   @Input('student')
   student$: Observable<Student>;
   student: Student;
@@ -24,6 +20,10 @@ export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
   semesters$: Observable<Semester[]>;
   allModules = {};
   ogpa: string;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setOGPA();
+  }
 
   constructor(private route: ActivatedRoute,
               private semestersService: SemestersService,
@@ -36,8 +36,8 @@ export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
     let numerator: number = 0.00;
     let denominator: number = 0.00;
     for(let semester of this.semesters){
-      console.log("Current Semester Total Credits: " + semester.totalCredits);
-      console.log("Current Semester SGPA: " + semester.sgpa);
+      console.log('Current Semester Total Credits: ' + semester.totalCredits);
+      console.log('Current Semester SGPA: ' + semester.sgpa);
       if(semester.sgpa && semester.totalCredits){
         numerator += +semester.totalCredits * +semester.sgpa;
         denominator += +semester.totalCredits;
@@ -82,10 +82,10 @@ export class ReviewerSingleStudentComponent implements OnInit,OnChanges {
           this.setOGPA();
         });
 
-        // console.log("Semesters[]: ", this.semesters);
+        // console.log('Semesters[]: ', this.semesters);
       },
       err => {
-        console.log("Error: ", err);
+        console.log('Error: ', err);
       }
     );
   }

@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {Feedback} from "../../models/Feedback";
-import {FeedbackService} from "../../services/feedback.service";
-import {StudentsService} from "../../services/students.service";
-import {AngularFire, AngularFireAuth} from "angularfire2";
+import {Observable} from 'rxjs/Observable';
+import {Feedback} from '../../models/Feedback';
+import {FeedbackService} from '../../services/feedback.service';
+import {StudentsService} from '../../services/students.service';
+import {AngularFire, AngularFireAuth} from 'angularfire2';
 
 @Component({
   selector: 'app-reviewers-feedback',
@@ -11,16 +11,16 @@ import {AngularFire, AngularFireAuth} from "angularfire2";
   styleUrls: ['./reviewers-feedback.component.css']
 })
 export class ReviewersFeedbackComponent implements OnInit, OnChanges {
-  ngOnChanges(changes: SimpleChanges): void {
-    this.ngOnInit();
-  }
-
   reviewerId: string;
 
   feedback$: Observable<Feedback[]>;
   feedback: Feedback[];
   feedbackReviewerExtras = {};
   feedbackStudentExtras = {};
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
+  }
 
   constructor(private feedbackService: FeedbackService,
               private studentsService: StudentsService,
@@ -35,7 +35,7 @@ export class ReviewersFeedbackComponent implements OnInit, OnChanges {
     this.feedback$
       .subscribe(feedback => {
         this.feedback = feedback;
-        for(let single_feedback of feedback){
+        for(const single_feedback of feedback){
           this.studentsService.getStudentByUserId(single_feedback.studentId)
             .subscribe(student => {
               console.log('Received Student: ', student);

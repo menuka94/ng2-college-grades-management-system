@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../shared/security/auth.service";
-import {Router} from "@angular/router";
-import {Reviewer} from "../../models/Reviewer";
-import {AngularFire, AngularFireDatabase, FirebaseObjectObservable} from "angularfire2";
-import * as firebase from "firebase/app";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../shared/security/auth.service';
+import {Router} from '@angular/router';
+import {Reviewer} from '../../models/Reviewer';
+import {AngularFire, AngularFireDatabase, FirebaseObjectObservable} from 'angularfire2';
+import * as firebase from 'firebase/app';
 import Database = firebase.database.Database;
-import {ReviewersService} from "../../services/reviewers.service";
+import {ReviewersService} from '../../services/reviewers.service';
 
 @Component({
   selector: 'app-reviewer-sign-up',
@@ -37,21 +37,21 @@ export class ReviewerSignUpComponent implements OnInit {
     });
   }
 
-  addNewReviewer(uid: string){
+  addNewReviewer(uid: string) {
     console.log('test 1');
-    let firstName = this.reviewerSignUpForm.value.firstName;
-    let lastName = this.reviewerSignUpForm.value.lastName;
-    let gender = this.reviewerSignUpForm.value.gender;
-    let employeeNo = this.reviewerSignUpForm.value.employeeNo;
-    let email = this.reviewerSignUpForm.value.email;
-    let reviewer: Reviewer = new Reviewer(firstName, lastName, gender, employeeNo, email, uid, false);
+    const firstName = this.reviewerSignUpForm.value.firstName;
+    const lastName = this.reviewerSignUpForm.value.lastName;
+    const gender = this.reviewerSignUpForm.value.gender;
+    const employeeNo = this.reviewerSignUpForm.value.employeeNo;
+    const email = this.reviewerSignUpForm.value.email;
+    const reviewer: Reviewer = new Reviewer(firstName, lastName, gender, employeeNo, email, uid, false);
 
     this.reviewersService.createNewReviewer(uid, reviewer);
     console.log('test 2');
   }
 
-  saveReviewer(){
-    let uid = "";
+  saveReviewer() {
+    let uid = '';
     console.log(this.reviewerSignUpForm.value);
 
     const val = this.reviewerSignUpForm.value;
@@ -73,9 +73,9 @@ export class ReviewerSignUpComponent implements OnInit {
     console.log('End of saveReviewer()');
   }
 
-  isPasswordMatch(){
+  isPasswordMatch() {
     const val = this.reviewerSignUpForm.value;
-    return val && val.password == val.confirmPassword;
+    return val && val.password === val.confirmPassword;
   }
 
 }
