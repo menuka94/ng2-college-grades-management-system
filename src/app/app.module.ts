@@ -24,7 +24,7 @@ import { ReviewerSearchStudentsComponent } from './reviewer-components/reviewer-
 import { ReviewerReviewFormComponent } from './reviewer-components/reviewer-review-form/reviewer-review-form.component';
 import { ReviewerFeedbackHistoryComponent } from './reviewer-components/reviewer-feedback-history/reviewer-feedback-history.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {CommonModule} from "@angular/common";
+import {APP_BASE_HREF, CommonModule} from "@angular/common";
 import { NavbarComponent } from './navbar/navbar.component';
 import {AngularFireModule, AuthMethods, AuthProviders, FIREBASE_PROVIDERS, FirebaseAuthConfig} from "angularfire2";
 import {authConfig, firebaseConfig} from "../firebase.config";
@@ -98,7 +98,7 @@ import { AllFeedbackComponent } from './admin-components/all-feedback/all-feedba
     AdminService,
     AuthService,
     AuthGuard,
-    FeedbackService
+    FeedbackService,
   ],
   bootstrap: [AppComponent]
 })
